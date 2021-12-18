@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  {% include template/head.html %}
+  </head>
+
+  <body>
+    <div id="skip-to-content"><a href="#maincontent">Skip to main content</a></div>
+    
+    <div class="d-flex" id="wrapper">
+      <!-- Sidebar-->
+      <div class="border-end bg-white" id="sidebar-wrapper">
+        
+        <div class="sidebar-heading border-bottom bg-light">{% if site.title-icon %}{% include icon.html icon=site.title-icon %} {% endif %}{{ site.title }}</div>
+        
+        <div class="list-group list-group-flush">
+          {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav' | sort: 'name' | sort: 'nav_order', 'first' %}
+          {% for p in nav_pages %}
+          <a class="list-group-item list-group-item-action p-3 {% if page.url == p.url %} list-group-item-primary{% else %} list-group-item-light{% endif %}" href="{{ p.url | relative_url }}">{% if p.nav == true %}{{ p.title }}{% else %}{{ p.nav }}{% endif %}</a>
+          {% endfor %}
+        </div>
+
+      </div>
+
+      <!-- Page content wrapper-->
+      <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-light bg-light border-bottom">
+          <div class="container-fluid">
+            <button class="navbar-toggler" id="sidebarToggle" title="Toggle Sidebar"><span class="navbar-toggler-icon"></span></button>
+            <span class="navbar-brand">{{ site.title }} | {{ page.title }}</span>
+            
+          </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container-fluid">
+          <main id="maincontent" role="main" aria-label="Content">
+            <div class="px-5 py-2">
+            {{ content }}
+            </div>
+          </main>
+          
+          <!-- footer --> 
+          <div class="text-center my-5">
+            <div class="list-group list-group-horizontal">
+              {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav' | sort: 'name' | sort: 'nav_order', 'first' %}
+              {% for p in nav_pages %}
+              <a class="list-group-item flex-fill {% if page.url == p.url %} list-group-item-primary{% else %} list-group-item-light{% endif %}" href="{{ p.url | relative_url }}">{% if p.nav == true %}{{ p.title }}{% else %}{{ p.nav }}{% endif %}</a>
+              {% endfor %}
+            </div>
+          </div>
+          {% include template/footer.html %}
+
+        </div>
+      </div>
+    </div>
+
+    {% include template/foot.html %}
+
+  </body>
+
+</html>

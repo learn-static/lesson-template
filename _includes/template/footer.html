@@ -1,0 +1,27 @@
+<footer class="site-footer my-5 py-5">
+  <div class="row justify-content-center">
+    <div id="footer-title" class="col-md-6">
+      <a class="h5" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <br>
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/">cc by-sa</a> {{ site.pub_year }} {% if site.github_username %}<a href="https://github.com/{{ site.github_username }}">{{ site.author }}</a>{% else %}{{ site.author }}{% endif %}
+    </div>
+    <div class="col-md-4">
+      {% if site.search == true %}
+      <script>
+        function site_search() {
+          var query = document.getElementById("site-search").value;
+          window.open("{{ '/search/index.html' | relative_url }}?q=" + encodeURIComponent(query), "_self" );
+        }
+      </script>
+      <form class="form-inline my-2 my-lg-0" role="search" id="search" onsubmit="site_search(); return false;">
+        <div class="input-group">
+          <input id="site-search" class="form-control" type="text" placeholder="Search" aria-label="Search box">
+          <div class="input-group-append">
+            <button class="btn btn-secondary" type="submit">{% include icon.html icon="search" %}<span class="visually-hidden">submit search</span></button>
+          </div>
+        </div>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</footer>
