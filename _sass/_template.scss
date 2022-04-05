@@ -92,7 +92,7 @@ header {
     }
 }
 footer {
-    @if variable-exists(top-border) { border-top: solid 1px $top-border; }
+    //@if variable-exists(top-border) { border-top: solid 1px $top-border; }
     .nav-link { 
         color: rgba(0,0,0,.5);
         &.active { 

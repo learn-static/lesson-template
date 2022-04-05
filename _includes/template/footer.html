@@ -1,4 +1,17 @@
-<footer class="site-footer my-5 py-5">
+<hr> 
+
+<div class="mt-2 mb-5">
+  <ul class="nav nav-pills nav-justified">
+    {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav' | sort: 'name' | sort: 'nav_order', 'first' %}
+    {% for p in nav_pages %}
+    <li class="nav-item">
+      <a class="nav-link{% if page.url == p.url %} active{% endif %}" {% if page.url == p.url %}aria-current="page"{% endif %} href="{{ p.url | relative_url }}">{% if p.nav == true %}{{ p.title }}{% else %}{{ p.nav }}{% endif %}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<footer class="site-footer mb-5">
   <div class="row justify-content-center">
     <div id="footer-title" class="col-md-6">
       <a class="h5" href="{{ '/' | relative_url }}">{{ site.title }}</a>

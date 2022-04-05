@@ -25,7 +25,7 @@
       <!-- Page content wrapper-->
       <div id="page-content-wrapper">
         <div class="container-fluid">
-          
+
           <!-- Top navigation -->
           <nav aria-label="breadcrumb" class="mt-2 mb-3">
             <ol class="breadcrumb h4">
@@ -47,15 +47,7 @@
             </div>
           </main>
           
-          <!-- footer --> 
-          <div class="text-center my-5">
-            <div class="list-group list-group-horizontal">
-              {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav' | sort: 'name' | sort: 'nav_order', 'first' %}
-              {% for p in nav_pages %}
-              <a class="list-group-item flex-fill {% if page.url == p.url %} list-group-item-primary{% else %} list-group-item-light{% endif %}" href="{{ p.url | relative_url }}">{% if p.nav == true %}{{ p.title }}{% else %}{{ p.nav }}{% endif %}</a>
-              {% endfor %}
-            </div>
-          </div>
+          <!-- footer -->
           {% include template/footer.html %}
 
         </div>
