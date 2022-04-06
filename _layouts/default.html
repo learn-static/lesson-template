@@ -53,7 +53,7 @@
                 </svg></button>
               </li>
               <li class="breadcrumb-item "><a href="{{ '/' | relative_url }}">{{ site.title }}</a></li>
-              {% if page.parent %}<li class="breadcrumb-item">{{ page.parent }}</li>{% endif %}
+              {% if page.section or page.section_id %}<li class="breadcrumb-item">{{ page.section | default: page.section_id }}</li>{% endif %}
               <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
             </ol>
           </nav>
