@@ -9,16 +9,34 @@
     
     <div class="d-flex" id="wrapper">
       <!-- Sidebar-->
-      <div class="border-end bg-white" id="sidebar-wrapper">
+      <div class="flex-shrink-0 p-3 bg-white" id="sidebar-wrapper">
         
-        <div class="sidebar-heading border-bottom bg-light">{% if site.title-icon %}{% include icon.html icon=site.title-icon %} {% endif %}{{ site.title }}</div>
-        
-        <div class="list-group list-group-flush">
-          {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav' | sort: 'name' | sort: 'nav_order', 'first' %}
+        <div class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">{% if site.title-icon %}{% include icon.html icon=site.title-icon %} {% endif %}{{ site.title }}</div>
+
+        <ul class="list-unstyled ps-0">
+          {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav_order and p.section == nil' | sort: 'nav_order' %}
           {% for p in nav_pages %}
-          <a class="list-group-item list-group-item-action p-3 {% if page.url == p.url %} list-group-item-primary{% else %} list-group-item-light{% endif %}" href="{{ p.url | relative_url }}">{% if p.nav == true %}{{ p.title }}{% else %}{{ p.nav }}{% endif %}</a>
+          <li class="mb-1">
+            {% if p.section_id %}
+            {% assign p_children = site.html_pages | where: 'section', p.section_id | sort: 'nav_order' %}
+            <button class="btn-toggle align-items-center rounded{% unless page.section == p.section_id or page.section_id == p.section_id %} collapsed{% endunless %}" data-bs-toggle="collapse" data-bs-target="#{{ p.section_id | slugify }}-collapse" aria-expanded="{% if page.section == p.section_id or page.section_id == p.section_id %}true{% else %}false{% endif %}">
+              {{ p.section_id }}
+            </button>
+            <div class="collapse{% if page.section == p.section_id or page.section_id == p.section_id %} show{% endif %}" id="{{ p.section_id | slugify }}-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="{{ p.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a></li>
+                {% for c in p_children %}
+                <li><a href="{{ c.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ c.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% else %}
+            <a href="{{ p.url | relative_url }}" class="link-dark rounded {% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a>
+            {% endif %}
+          </li>
           {% endfor %}
-        </div>
+          
+        </ul>
 
       </div>
 
