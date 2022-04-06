@@ -1,6 +1,6 @@
 ---
+nav_order: 1
 title: Introduction
-nav: Intro
 ---
 
 `workshop-template-b` is a Jekyll project to create a simple workshop website, with a [Bootstrap](https://getbootstrap.com/)-based theme, designed for hosting on [GitHub Pages](https://pages.github.com/).

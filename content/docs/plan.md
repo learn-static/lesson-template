@@ -1,6 +1,7 @@
 ---
+section: Documentation
+nav_order: 2
 title: Lesson Plan Template
-nav: Plan
 topics: Learning Objectives; Assignments
 ---
 

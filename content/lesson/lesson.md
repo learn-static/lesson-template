@@ -1,6 +1,7 @@
 ---
+section_id: Example Step
+nav_order: 4
 title: Create Lesson Content
-nav: Content
 topics: Content; Markdown; Includes
 description: >
     This text is a 'section description'. Directly below this is an example section video embed. This page details how to write content pages and add interest with includes.

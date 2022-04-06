@@ -1,6 +1,7 @@
 ---
+section_id: Prep
+nav_order: 2
 title: Workshop Prep
-nav: Prep
 topics: GitHub; Optional Software
 ---
 
