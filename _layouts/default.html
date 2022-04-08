@@ -19,10 +19,12 @@
           {% assign current_i = forloop.index0 %}
           <li class="mb-1">
             {% if p.section_id %}
-            {% if p.url == page.url %}
-              
-            {% endif %}
             {% assign p_children = site.html_pages | where: 'section', p.section_id | sort: 'nav_order' %}
+            {% if p.url == page.url %}
+              {% assign prev_number = forloop.index0 | minus: 1 %}
+              {% assign prev_page_title = nav_pages[prev_number].title %}{% assign prev_page_url = nav_pages[prev_number].url %}
+              {% assign next_page_title = p_children[0].title %}{% assign next_page_url = p_children[0].url %}
+            {% endif %}
             <button class="btn-toggle align-items-center rounded{% unless page.section == p.section_id or page.section_id == p.section_id %} collapsed{% endunless %}" data-bs-toggle="collapse" data-bs-target="#{{ p.section_id | slugify }}-collapse" aria-expanded="{% if page.section == p.section_id or page.section_id == p.section_id %}true{% else %}false{% endif %}">
               {{ p.section_id }}
             </button>
