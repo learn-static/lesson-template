@@ -24,14 +24,14 @@
             </button>
             <div class="collapse{% if page.section == p.section_id or page.section_id == p.section_id %} show{% endif %}" id="{{ p.section_id | slugify }}-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="{{ p.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a></li>
+                <li><a href="{{ p.url | relative_url }}" class="nav-item link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a></li>
                 {% for c in p_children %}
-                <li><a href="{{ c.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ c.title }}</a></li>
+                <li><a href="{{ c.url | relative_url }}" class="nav-item link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ c.title }}</a></li>
                 {% endfor %}
               </ul>
             </div>
             {% else %}
-            <a href="{{ p.url | relative_url }}" class="link-dark rounded {% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a>
+            <a href="{{ p.url | relative_url }}" class="nav-item link-dark rounded {% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a>
             {% endif %}
           </li>
           {% endfor %}

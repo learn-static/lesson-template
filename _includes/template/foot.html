@@ -5,3 +5,15 @@
 {% if page.foot %}{% include {{ page.foot }} %}{% endif %}
 {% if layout.foot %}{% include {{ layout.foot }} %}{% endif %}
 {% include template/scroll-to-top.html %}
+<script> 
+    var current_page = "{{ page.url | relative_url }}";
+    var nav_items = Array.from(document.querySelectorAll("a.nav-item"));
+    var current_index = nav_items.findIndex(item => item.getAttribute("href") == current_page);
+    if (nav_items[current_index + 1]) {
+        var next_arrow = `<a href="${nav_items[current_index +1].getAttribute("href")}">${nav_items[current_index +1].innerHTML}</a>`;
+    } else { next_arrow = ""; }
+    if (nav_items[current_index -1]) {
+        var prev_arrow = `<a href="${nav_items[current_index -1].getAttribute("href")}">${nav_items[current_index -1].innerHTML}</a>`;
+    } else { prev_arrow = ""; }
+    console.log(next_arrow + prev_arrow);
+</script>
