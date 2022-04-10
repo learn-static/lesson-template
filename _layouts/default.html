@@ -91,14 +91,18 @@
               {% if p.url == page.url %}
                 {% assign prev_number = forloop.index0 | minus: 1 %}
                 {% assign next_number = forloop.index0 | plus: 1 %}
-                {% if forloop.last %}
-                  {% assign prev_page_title = nav_pages[prev_number].title %}{% assign prev_page_url = nav_pages[prev_number].url %}
-                {% elsif forloop.first %}
+                {% unless forloop.first %}
+                  {% assign prev_page = nav_pages[prev_number] %}
+                  {% if prev_page.section_id %}
+                    {% assign prev_child = site.html_pages | where: 'section', prev_page.section_id | sort: 'nav_order' | last %}
+                    {% assign prev_page_title = prev_child.title %}{% assign prev_page_url = prev_child.url %}
+                  {% else %}
+                    {% assign prev_page_title = prev_page.title %}{% assign prev_page_url = prev_page.url %}
+                  {% endif %}
+                {% endunless %}
+                {% unless forloop.last %}
                   {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
-                {% else %}
-                  {% assign prev_page_title = nav_pages[prev_number].title %}{% assign prev_page_url = nav_pages[prev_number].url %}
-                  {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
-                {% endif %}
+                {% endunless %}
               {%- endif -%}
             <a href="{{ p.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a>
             {% endif %}
