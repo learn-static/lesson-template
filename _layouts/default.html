@@ -22,8 +22,25 @@
             {% assign p_children = site.html_pages | where: 'section', p.section_id | sort: 'nav_order' %}
             {% if p.url == page.url %}
               {% assign prev_number = forloop.index0 | minus: 1 %}
-              {% assign prev_page_title = nav_pages[prev_number].title %}{% assign prev_page_url = nav_pages[prev_number].url %}
-              {% assign next_page_title = p_children[0].title %}{% assign next_page_url = p_children[0].url %}
+              {% assign next_number = forloop.index0 | plus: 1 %}
+              {% if forloop.first %}
+                {% if p_children[0] %}{% assign next_page_title = p_children[0].title %}{% assign next_page_url = p_children[0].url %}
+                {% else %}
+                {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
+                {% endif %}
+              {% else %}
+                {% assign prev_page = nav_pages[prev_number] %}
+                {% if prev_page.section_id %}
+                  {% assign prev_child = site.html_pages | where: 'section', prev_page.section_id | sort: 'nav_order' | last %}
+                  {% assign prev_page_title = prev_child.title %}{% assign prev_page_url = prev_child.url %}
+                {% else %}
+                  {% assign prev_page_title = prev_page.title %}{% assign prev_page_url = prev_page.url %}
+                {% endif %}
+                {% if p_children[0] %}{% assign next_page_title = p_children[0].title %}{% assign next_page_url = p_children[0].url %}
+                {% else %}
+                {% unless forloop.last %}{% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}{% endunless %}
+                {% endif %}
+              {% endif %}
             {% endif %}
             <button class="btn-toggle align-items-center rounded{% unless page.section == p.section_id or page.section_id == p.section_id %} collapsed{% endunless %}" data-bs-toggle="collapse" data-bs-target="#{{ p.section_id | slugify }}-collapse" aria-expanded="{% if page.section == p.section_id or page.section_id == p.section_id %}true{% else %}false{% endif %}">
               {{ p.section_id }}
@@ -35,14 +52,17 @@
                 {% if c.url == page.url %}
                   {% assign prev_number = forloop.index0 | minus: 1 %}
                   {% assign next_number = forloop.index0 | plus: 1 %}
-                  {% if forloop.first %}
-                    {% assign prev_page_title = p.title %}{% assign prev_page_url = p.url %}
-                    {% assign next_page_title = p_children[next_number].title %}{% assign next_page_url = p_children[next_number].url %}
-                  {% elsif forloop.last %}
-                  {% comment %} this doesn't work because loop of one doesn't trigger forloop.last for some reason... {% endcomment %}
-                    {% assign prev_page_title = p_children[prev_number].title %}{% assign prev_page_url = p_children[prev_number].url %}
+                  {% if forloop.last %}
+                    {% if forloop.first %}
+                      {% assign prev_page_title = p.title %}{% assign prev_page_url = p.url %}
+                    {% else %}
+                      {% assign prev_page_title = p_children[prev_number].title %}{% assign prev_page_url = p_children[prev_number].url %}
+                    {% endif %}
                     {% assign next_i = current_i | plus: 1 %}
                     {% assign next_page_title = nav_pages[next_i].title %}{% assign next_page_url = nav_pages[next_i].url %}
+                  {% elsif forloop.first %}
+                    {% assign prev_page_title = p.title %}{% assign prev_page_url = p.url %}
+                    {% assign next_page_title = p_children[next_number].title %}{% assign next_page_url = p_children[next_number].url %}
                   {% else %}
                     {% assign prev_page_title = p_children[prev_number].title %}{% assign prev_page_url = p_children[prev_number].url %}
                     {% assign next_page_title = p_children[next_number].title %}{% assign next_page_url = p_children[next_number].url %}
@@ -56,10 +76,10 @@
             {% if p.url == page.url %}
               {% assign prev_number = forloop.index0 | minus: 1 %}
               {% assign next_number = forloop.index0 | plus: 1 %}
-              {% if forloop.first %}
-                {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
-              {% elsif forloop.last %}
+              {% if forloop.last %}
                 {% assign prev_page_title = nav_pages[prev_number].title %}{% assign prev_page_url = nav_pages[prev_number].url %}
+              {% elsif forloop.first %}
+                {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
               {% else %}
                 {% assign prev_page_title = nav_pages[prev_number].title %}{% assign prev_page_url = nav_pages[prev_number].url %}
                 {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
