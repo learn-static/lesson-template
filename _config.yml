@@ -82,7 +82,7 @@ defaults:
   - scope:
       path: "content"
     values:
-      layout: "section"
+      layout: "lesson-content"
 # ignore stuff
 exclude: [README.md, LICENSE, assets/lib/README.md]
 # Build settings
