@@ -1,7 +1,14 @@
 <!-- Bootstrap JS bundle -->
 <script src="{{ '/assets/lib/bootstrap.bundle.min.js' | relative_url }}"></script>
+<script>
+const sidebarToggle = document.body.querySelector('#sidebarToggle');
+const sidebarNav = document.body.querySelector('#sidebar-wrapper');
+sidebarToggle.addEventListener('click', event => {
+    event.preventDefault();
+    sidebarNav.classList.toggle('sidebar-show');
+});
+</script>
 <!-- load other js -->
-{% include template/sidebar.html %}
 {% if page.foot %}{% include {{ page.foot }} %}{% endif %}
 {% if layout.foot %}{% include {{ layout.foot }} %}{% endif %}
 {% include template/scroll-to-top.html %}
