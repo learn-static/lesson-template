@@ -1,9 +1,7 @@
 /* tweak defaults if variables set */
 body {
-    @if variable-exists(base-font-family) { font-family: $base-font-family; }
     @if variable-exists(base-font-size) { font-size: $base-font-size; }
     @if variable-exists(text-color) { color: $text-color; }
-    @if variable-exists(code-font-family) { code { font-family: $code-font-family; } }
 }
 @if variable-exists(link-color) {
     a {
@@ -17,6 +15,21 @@ body {
 }
 /* remove link underline */ 
 a { text-decoration: none; }
+/* custom header color */ 
+@if variable-exists(header-bg-color) {
+    header { 
+        background: $header-bg-color;
+    }
+}
+#header-title {
+    @if variable-exists(header-text-color) {
+        color: $header-text-color;
+    } @else {
+        --bs-text-opacity: 1;
+        color: rgba(var(--bs-dark-rgb),var(--bs-text-opacity))!important;
+    }
+    text-decoration: none;
+}
 
 /* set up sidebar + content flex grid */ 
 @media (min-width: 992px) {
@@ -74,7 +87,7 @@ a { text-decoration: none; }
 }
 .side-bar-item:hover, .side-bar-item:focus {
     color: rgba(0, 0, 0, .85);
-    background-color: #d2f4ea;
+    background-color: $active-nav-color;
 }
 .btn-toggle::after {
     width: 1.25em;
@@ -97,10 +110,10 @@ a { text-decoration: none; }
     text-decoration: none;
 }
 .btn-toggle-nav a:hover, .btn-toggle-nav a:focus {
-    background-color: #d2f4ea;
+    background-color: $active-nav-color;
 }
 a.nav-active {
-    background-color: #d2f4ea;
+    background-color: $active-nav-color;
 }
 #sidebar-footer {
     margin-left: 0.5rem;

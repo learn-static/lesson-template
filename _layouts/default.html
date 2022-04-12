@@ -10,7 +10,7 @@
 
     <header class="py-3">
       <div class="container-xxl d-flex flex-wrap">
-        <a href="{{ '/' | relative_url }}" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none h4">
+        <a id="header-title" href="{{ '/' | relative_url }}" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto h4">
           {% if site.title-icon %}<span class="me-2">{% include icon.html icon=site.title-icon %}</span>{% endif %}
           {{ site.title }}
         </a>

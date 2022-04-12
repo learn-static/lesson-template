@@ -33,6 +33,18 @@ pub_year: 2021
 source-code: https://github.com/evanwill/workshop-template-s
 
 ##########
+# THEME CUSTOMIZATION [optional!]
+#
+# leave these commented out or blank for defaults
+#
+# header-bg-color: 
+# header-text-color: 
+# active-nav-color: 
+# text-color: 
+# link-color:
+# base-font-size:
+
+##########
 # URL VARIABLES [optional!]
 #
 # Optional if using GitHub Pages! If building manually, these must be set correctly.
