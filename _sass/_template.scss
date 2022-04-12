@@ -15,6 +15,8 @@ body {
         }
     }
 }
+/* remove link underline */ 
+a { text-decoration: none; }
 
 /* sidebar styles */ 
 body {
@@ -74,7 +76,7 @@ main {
 .nav-active a {
     text-decoration: underline;
 }
-
+/*
 #wrapper {
     overflow-x: hidden;
 }
@@ -116,7 +118,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
         margin-left: -15rem;
     }
 }
-
+*/
 /* skip nav for accessibility, based on https://webaim.org/techniques/skipnav/ */
 #skip-to-content a {
 	padding:6px;
@@ -139,31 +141,6 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 	outline-color:transparent;	
 	-webkit-transition: top .1s ease-in;
     transition: top .1s ease-in;
-}
-/* remove link underline */ 
-a { text-decoration: none; }
-/* add decorative borders  */
-header {
-    border-top: solid 4px $top-border;
-    .nav-tabs {
-        border-bottom: none;
-    }
-}
-footer {
-    //@if variable-exists(top-border) { border-top: solid 1px $top-border; }
-    .nav-link { 
-        color: rgba(0,0,0,.5);
-        &.active { 
-            text-decoration: underline;
-            color: rgba(0,0,0,.9);
-        }
-        &:hover {
-            color: rgba(0,0,0,.7);
-        }
-    }
-}
-#footer-title {
-    a { color: rgba(0,0,0,.9); }
 }
 
 /* feature include tweaks */
