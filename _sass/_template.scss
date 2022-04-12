@@ -102,6 +102,10 @@ a { text-decoration: none; }
 a.nav-active {
     background-color: #d2f4ea;
 }
+#sidebar-footer {
+    margin-left: 0.5rem;
+    margin-right: 5rem;
+}
 
 /* skip nav for accessibility, based on https://webaim.org/techniques/skipnav/ */
 #skip-to-content a {
