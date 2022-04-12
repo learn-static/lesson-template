@@ -156,10 +156,6 @@
 
         </nav>
 
-        <hr>
-        {% if prev_page_title %}<p><a class="btn btn-secondary" href="{{ prev_page_url | relative_url }}">Prev: {{ prev_page_title }}</a></p>{% endif %}
-        {% if next_page_title %}<p><a class="btn btn-secondary" href="{{ next_page_url | relative_url }}">Next: {{ next_page_title }}</a></p>{% endif %}
-
       </div>
 
       <!-- Page content wrapper-->
@@ -170,6 +166,14 @@
             <div class="px-5 py-2">
             {{ content }}
             </div>
+            
+            <hr>
+
+            <div class="mt-5 d-flex justify-content-between">
+              {% if prev_page_title %}<a class="btn btn-lg btn-outline-dark" href="{{ prev_page_url | relative_url }}">{% include icon.html icon="chevron-left" %} {{ prev_page_title }}</a>{% endif %}
+              {% if next_page_title %}<a class="btn btn-lg btn-outline-dark" href="{{ next_page_url | relative_url }}">{{ next_page_title }} {% include icon.html icon="chevron-right" %}</a>{% endif %}
+            </div>
+
           </main>
 
       </div>
