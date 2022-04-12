@@ -52,11 +52,11 @@
     
     <div class="container-xxl" id="wrapper">
       <!-- Sidebar-->
-      <div class="p-3 bg-white" id="sidebar-wrapper">
+      <div class="py-4 bg-white" id="sidebar-wrapper">
  
         <nav aria-label="Lesson content navigation">
 
-          <ul class="list-unstyled ps-0">
+          <ul class="list-unstyled ps-0 pt-1">
 
           {% comment %}
             Liquid logic figures out the nav items and nesting from the content front matter, 
@@ -65,7 +65,7 @@
           {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav_order and p.section == nil' | sort: 'nav_order' %}
           {% for p in nav_pages %}
             {% assign current_i = forloop.index0 %}
-            <li class="mb-1">
+            <li class="mb-2">
               {% comment %} 
                 if the page is a section header, 
                 find the section children and display in a dropdown
@@ -95,7 +95,7 @@
                     {% endif %}
                   {% endif %}
                 {%- endif -%}
-              <button class="btn-toggle align-items-center rounded{% unless page.section == p.section_id or page.section_id == p.section_id %} collapsed{% endunless %}" data-bs-toggle="collapse" data-bs-target="#{{ p.section_id | slugify }}-collapse" aria-expanded="{% if page.section == p.section_id or page.section_id == p.section_id %}true{% else %}false{% endif %}">
+              <button class="side-bar-item btn-toggle rounded{% unless page.section == p.section_id or page.section_id == p.section_id %} collapsed{% endunless %}" data-bs-toggle="collapse" data-bs-target="#{{ p.section_id | slugify }}-collapse" aria-expanded="{% if page.section == p.section_id or page.section_id == p.section_id %}true{% else %}false{% endif %}">
                 {{ p.section_id }}
               </button>
               <div class="collapse{% if page.section == p.section_id or page.section_id == p.section_id %} show{% endif %}" id="{{ p.section_id | slugify }}-collapse">
@@ -122,7 +122,7 @@
                         {% assign next_page_title = p_children[next_number].title %}{% assign next_page_url = p_children[next_number].url %}
                       {% endif %}
                     {%- endif -%}
-                  <li><a href="{{ c.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ c.title }}</a></li>
+                  <li><a href="{{ c.url | relative_url }}" class="link-dark rounded{% if page.url == c.url %} nav-active{% endif %}">{{ c.title }}</a></li>
                   {% endfor %}
                 </ul>
               </div>
@@ -147,7 +147,7 @@
                     {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
                   {% endunless %}
                 {%- endif -%}
-              <a href="{{ p.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a>
+              <a href="{{ p.url | relative_url }}" class="side-bar-item link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a>
               {% endif %}
             </li>
           {% endfor %}
@@ -163,7 +163,7 @@
         
           <!-- Page content-->
           <main id="maincontent" role="main" aria-label="Content">
-            <div class="px-5 py-2">
+            <div class="px-1 py-4">
             {{ content }}
             </div>
             
