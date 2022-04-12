@@ -1,3 +1,12 @@
 <p class="h5">{{ site.title }}</p> 
 <p>{{ site.description }}</p>
-<p><small>built with <a href="https://github.com/learn-static/sidebar-template">Lib-Static Lesson Template</a></small></p>
+<p>
+    <a href="{{ site.source-code }}" class="text-dark h4" title="Source Code">{% include icon.html icon="github" %}<span class="visually-hidden">Source Code</span></a> 
+    <small> 
+        {% if site.content_license_link %}<a href="{{ site.content_license_link }}">{{ site.content_license }}</a>
+        {% elsif site.content_license %}{{ site.content_license }}{% endif %} 
+        {% if site.pub_year %}{{ site.pub_year }}{% endif %} 
+        <br>
+        built with <a href="https://github.com/learn-static/sidebar-template">Learn-Static Lesson Template</a>
+    </small>
+</p>

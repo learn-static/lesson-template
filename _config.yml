@@ -16,21 +16,23 @@ title: Lesson Template
 # find names on https://icons.getbootstrap.com/
 # some options: code-slash file-code gear tools lightblub book bookmark-star
 title-icon: code-slash
-# description, keywords, and image for meta tags
+# description appears in sidebar footer
 description: "Create a workshop website quick and easy!"
+# keywords for meta tags
 keywords: "workshops, websites, gh-pages, jekyll"
+# image for meta tags, will appear when sharing link on social media
 featured-image: "/images/uidaho-workshop.jpg"
-# add search box to footer? true/false
-search: true
 
-# author settings for cc-by, appears in the footer and credits
-author: evan will
-# your github username for link [optional]
-github_username: evanwill
+# author name
+author: evanwill
 # year or date published
-pub_year: 2021
+pub_year: 2022
 # location of code, the full url to your github repository
 source-code: https://github.com/evanwill/workshop-template-s
+# content license (typically "cc by-sa"), displayed in sidebar
+content_license: "cc by-sa"
+# URL to the content license
+content_license_link: https://creativecommons.org/licenses/by-sa/4.0/
 
 ##########
 # THEME CUSTOMIZATION [optional!]
