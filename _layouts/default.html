@@ -169,9 +169,9 @@
             
             <hr>
 
-            <div class="mt-5 d-flex justify-content-between">
-              {% if prev_page_title %}<a class="btn btn-lg btn-outline-dark" href="{{ prev_page_url | relative_url }}">{% include icon.html icon="chevron-left" %} {{ prev_page_title }}</a>{% endif %}
-              {% if next_page_title %}<a class="btn btn-lg btn-outline-dark" href="{{ next_page_url | relative_url }}">{{ next_page_title }} {% include icon.html icon="chevron-right" %}</a>{% endif %}
+            <div class="my-5 d-flex justify-content-between">
+              {% if prev_page_title %}<a class="btn btn-outline-dark" href="{{ prev_page_url | relative_url }}">{% include icon.html icon="chevron-left" %} {{ prev_page_title }}</a>{% endif %}
+              {% if next_page_title %}<a class="btn btn-outline-dark" href="{{ next_page_url | relative_url }}">{{ next_page_title }} {% include icon.html icon="chevron-right" %}</a>{% endif %}
             </div>
 
           </main>
