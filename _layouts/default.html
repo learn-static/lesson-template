@@ -9,10 +9,10 @@
     <div id="skip-to-content"><a href="#maincontent">Skip to main content</a></div>
 
     <header class="py-3">
-      <div class="container-xxl d-flex flex-wrap ">
-        <a href="{{ '/' | relative_url }}" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+      <div class="container-xxl d-flex flex-wrap">
+        <a href="{{ '/' | relative_url }}" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none h4">
           {% if site.title-icon %}<span class="me-2">{% include icon.html icon=site.title-icon %}</span>{% endif %}
-          <span class="fs-4">{{ site.title }}</span>
+          {{ site.title }}
         </a>
         <script>
           function site_search() {
@@ -20,78 +20,35 @@
             window.open("{{ '/search/index.html' | relative_url }}?q=" + encodeURIComponent(query), "_self" );
           }
         </script>
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" id="search" onsubmit="site_search(); return false;">
+        <form class="mb-3 mb-lg-0" role="search" id="search" onsubmit="site_search(); return false;">
           <input id="site-search" class="form-control" type="text" placeholder="Search" aria-label="Search box">
         </form>
       </div>
     </header>
 
-    <nav class="py-2 bg-light border-bottom">
-      <div class="container-xxl d-flex flex-wrap">
-        <button class="border rounded" id="sidebarToggle" title="Toggle Sidebar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+    <div class="py-2 bg-light border-bottom">
+      <div class="container-xxl d-flex flex-wrap align-items-center">
+
+        <button class="btn btn-outline-secondary text-dark" id="sidebarToggle" title="Toggle Sidebar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
           </svg>
         </button>
         
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Library</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data</li>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb ms-3 mb-0">
+            <li class="breadcrumb-item">
+              <a href="{{ '/' | relative_url }}">Home</a>
+            </li>
+            {% if page.section or page.section_id %}
+            <li class="breadcrumb-item">{{ page.section | default: page.section_id }}</li>
+            {% endif %}
+            <li class="breadcrumb-item" aria-current="page">{{ page.title }}</li>
           </ol>
         </nav>
 
-        <ul class="nav me-auto">
-          <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
-          <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Features</a></li>
-          <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Pricing</a></li>
-          <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
-          <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>
-        </ul>
       </div>
-    </nav>
-
-    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
-      <div class="container-xxl">
-        <a class="navbar-brand" href="{{ '/' | relative_url }}">{% if site.title-icon %}{% include icon.html icon=site.title-icon %} {% endif %}{{ site.title }}</a>
-        
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-          </ul>
-          
-            <button class="border rounded" id="sidebarToggle" title="Toggle Sidebar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-            </svg></button>
-          
-        </div>
-      </div>
-    </nav>
-
-    <header class="">
-      <nav class="navbar navbar-expand navbar-light bg-light" aria-label="Main navigation">
-        <div class="container-xxl">
-          <a href="{{ '/' | relative_url }}" class="navbar-brand">{% if site.title-icon %}{% include icon.html icon=site.title-icon %} {% endif %}{{ site.title }}</a>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a href="{{ '/' | relative_url }}">Home</a>
-              </li>
-              {% if page.section or page.section_id %}
-              <li class="breadcrumb-item">{{ page.section | default: page.section_id }}</li>
-              {% endif %}
-              <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
-              
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+    </div>
     
     <div class="container-xxl" id="wrapper">
       <!-- Sidebar-->
