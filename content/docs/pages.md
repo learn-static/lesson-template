@@ -1,26 +1,30 @@
-# lesson-template
+---
+section_id: Create Content
+nav_order: 3
+title: Page Set Up
+topics: Front Matter; Navigation
+---
 
-Learn-Static Lesson Template is a minimal Jekyll theme with sidebar content nav for creating lesson and workshop websites using Markdown.
-The sidebar nav supports pages nested into sections to help organize your lesson content. 
-The template provides Liquid includes to simplify adding Bootstrap components to your pages.
+Content pages are written in markdown and can be enhanced using Liquid includes that are packaged with the template.
+Start by editing the examples or creating new files in the "content" folder.
 
-## Creating Content
+Each content page will be one file inside the "content" folder of your project.
+The page *stubs* have the extension `.md` (meaning Markdown) and can be organized further into folders inside the "content" folder if desired.
 
-Content follows these conventions:
+## Front Matter
 
-- All documentation files are written in Markdown. For clearer version control, editing, accessibility, and reusability please:
-    - write one sentence per line.
-    - always provide a blank line between elements (i.e. headers, paragraphs, lists, code blocks are always followed by a blank line).
-    - headers should follow logical order on page without skipping levels. The page template includes an "h1" using the `title` set in the front matter--thus additional headers on the page should start at "h2", i.e. `##` in markdown.
-    - code and variables should be given `code` class using backticks, filenames should be given in "quotes".
-- Markdown files are located in the "content" folder and can be further organized into folders inside if desired.
+Each content page requires "YAML front matter" at the top of the file.
+This information is used to configure the page and navigation added to the site's sidebar.
 
-## Create Navigation 
+Use these values:
 
-The sidebar navigation menu is controlled by front matter added to each page. 
-There are two ways a page can appear in the nav: individual or in a section drop down.
+- `title:` value will appear as the H1 header at the top of the page, and in navigation links.
+- `topics:` will appear as a small feature below the title (optional). 
+- `description:` will appear as an indented text block below the title (optional). This gives you a chance to summarize the section contents. 
+- `youtubeid:` will add an YouTube video embed (optional). Find the id in the YouTube link. For example, in `https://youtu.be/moJgWrD6dwg` or `https://www.youtube.com/watch?v=moJgWrD6dwg` the youtubeid is `moJgWrD6dwg`.
+- Alternatively, if you don't want `title` or other options to appear on the page, you can over ride the section layout by adding `layout: default` 
 
-The nav follows these rules:
+The sidebar navigation is set up using further front matter values following these rules:
 
 - **Individual listing:** To list a page in the nav individually, add `nav_order` to the front matter of a content page. e.g. `nav_order: 1`. Do *not* include `section_id` or `section` in the front matter.
 - **Section dropdown:** To create a "section" drop down, on the first content page of the section, add `nav_order` and `section_id` to the front matter. The value of `section_id` will be displayed as the label for the section drop down. e.g. `section_id: Workshop Prep`. The page's title will be listed as the first item in the section dropdown.
@@ -62,9 +66,3 @@ nav_order: 2
 title: Configure Git
 ---
 ```
-
-## License
-
-Learn-Static documentation and general web content is licensed [Creative Commons Attribution-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).
-Learn-Static code is licensed [MIT](https://github.com/learn-static/lesson-template/blob/main/LICENSE). 
-This license does not include external dependencies included in the "assets/lib" directory, which are covered by their individual licenses.

@@ -1,21 +1,24 @@
 ---
-section_id: Prep
+section_id: Get Started
 nav_order: 2
-title: Workshop Prep
+title: Prep
 topics: GitHub; Optional Software
 ---
 
-To create your own materials using `workshop-template-b`, please create a free [GitHub account](https://github.com/join) if you do not have one already.
+To create your own materials using Lesson Template, please create a free [GitHub account](https://github.com/join) if you do not have one already.
 Basic familiarity with the GitHub web interface will be helpful.
 
 For a quick introduction check out GitHub's [Hello World guide](https://guides.github.com/activities/hello-world/), or the extensive [GitHub Learning Lab](https://lab.github.com/).
 
 It is possible to create a website with this template using only GitHub's web interface--in fact, it works great!
-However, for more advanced uses you will want Git, Ruby, and Jekyll installed on your computer to do local development.
+(Tip: you can click `.` on any GitHub repository to open the builtin fully featured [web editor](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) to work on your project.)
+
+However, for more advanced use you may want to get set up to develop projects on your local computer. 
+You will need Git, Ruby, and Jekyll installed.
 
 {% capture text %}
 1. Have a [GitHub](https://github.com) account.
-2. Optional: have [Git](https://git-scm.com/), [Jekyll](https://jekyllrb.com/), and a nice [text editor](https://code.visualstudio.com/) installed.
+2. *Totally Optional:* have [Git](https://git-scm.com/), [Jekyll](https://jekyllrb.com/), and a nice [text editor](https://code.visualstudio.com/) installed.
 {% endcapture %}
 {% include card.html text=text header="Setup Overview" %}
 
@@ -69,5 +72,3 @@ Open-source cross platform suggestions:
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Atom](https://atom.io/)
-
-Tip: you can click `.` on any GitHub repository to [open the web editor](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor) (which is a light version of VS Code)!

@@ -3,18 +3,22 @@ nav_order: 1
 title: Introduction
 ---
 
-`workshop-template-b` is a Jekyll project to create a simple workshop website, with a [Bootstrap](https://getbootstrap.com/)-based theme, designed for hosting on [GitHub Pages](https://pages.github.com/).
+Learn-Static Lesson Template is a Jekyll project to create a simple lesson or workshop website, with a [Bootstrap](https://getbootstrap.com/)-based theme, designed for hosting on [GitHub Pages](https://pages.github.com/).
 
-It works best for about 5 pages of instructions, plus index, all written in Markdown. 
-The navigation to the main pages is exposed at top and bottom of each page for easy stepping through the lessons.
+It features a sidebar navigation providing clear structure for step by step content.
+The sidebar nav supports pages nested into sections to help organize your lesson content. 
+
+All content is written using basic Markdown, making it simple to write, edit, and reuse lesson materials.
+
+To use Lesson Template to create your own website--> make a copy and replace the template content with your own!
 
 ### Why?
 
 Rather than making slides for a workshop, why not make a website? 
 It's easier to write, access, share, and reuse. 
-GitHub and GitHub Pages makes this pretty easy.
+GitHub and GitHub Pages makes this relatively straightforward.
 
-It is a better [Open Educational Resource](https://en.wikipedia.org/wiki/Open_educational_resources) since anyone can make a copy and adapt!
+Writing content in this simple, reuseable format makes for a better [Open Educational Resource](https://en.wikipedia.org/wiki/Open_educational_resources) since anyone can make a copy and adapt!
 
 ## GitHub Pages 
 

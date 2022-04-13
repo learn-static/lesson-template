@@ -1,47 +1,19 @@
 ---
-section_id: Example Step
-nav_order: 4
-title: Create Lesson Content
-topics: Content; Markdown; Includes
-description: >
-    This text is a 'section description'. Directly below this is an example section video embed. This page details how to write content pages and add interest with includes.
-youtubeid: moJgWrD6dwg
+section: Create Content
+nav_order: 3
+title: Feature Includes
+topics: Content; Bootstrap Components
 ---
 
-## Content Pages
-
-Content pages are written in markdown and can be enhanced using Liquid includes that are packaged with the template.
-Start by editing the examples or creating new files in the "content" folder.
-
-[Markdown](https://daringfireball.net/projects/markdown/) is a standard to [simplify writing](https://evanwill.github.io/_drafts/notes/writing-markdown.html) content for the web. 
-[GitHub markdown flavor](https://help.github.com/articles/basic-writing-and-formatting-syntax/) can be used any where on GitHub and in Jekyll.
-The basics are intuitive, you can learn in about a minute!
-See [Markdown in a Minute](https://evanwill.github.io/_drafts/notes/markdown-minute.html) to get started.
-
-At the top of each content page is "YAML front matter" used to configure the page.
-Use these options:
-
-- `nav:` add the text you want to appear in the the header and footer navigation. 
-    - Alternatively, use `nav: true` to use the page's `title` value for the nav text. 
-    - Do not include `nav` if you do not want the page to appear in the nav elements.
-    - All pages with a `nav` value will appear in the header and footer navigation, sorted by order of filenames. For simplicity use leading numbers in the lesson page filenames to create correct order.
-- `title:` value will appear as `h1` at the top of the page.
-- `topics:` will appear as a small feature below the title (optional). 
-- `description:` will appear as an indented text block below the title (optional). This gives you a chance to summarize the section contents. 
-- `youtubeid:` will add an YouTube video embed (optional). Find the id in the YouTube link. For example, in `https://youtu.be/moJgWrD6dwg` or `https://www.youtube.com/watch?v=moJgWrD6dwg` the youtubeid is `moJgWrD6dwg`.
-- Alternatively, if you don't want `title` or other options to appear on the page, you can over ride the section layout by adding `layout: default` 
-
-## Components Includes
-
-`workshop-template-b` contains a series of [Liquid "includes"](https://jekyllrb.com/docs/includes/) to simplify adding basic [Bootstrap 5 components](https://getbootstrap.com/docs/5.0/components/) to your Markdown content.
-The includes can be found in the "_includes" folder. 
+Lesson Template contains a series of [Liquid "includes"](https://jekyllrb.com/docs/includes/) to simplify adding basic [Bootstrap 5 components](https://getbootstrap.com/docs/5.0/components/) to your Markdown content.
+The includes can be found in the "_includes" folder of your project. 
 Check the comments at the top of each include file for details about options and how to use them.
 
 Examples below demonstrate the includes with sample include `code` followed by the rendered feature:
 
 --------
 
-### Figures 
+## Figures 
 
 - put any images you want to use in the "images" folder, or use a full URL to external images.
 - in the markdown file where you want the image to appear, use the `figure.html` include on its own line, following the pattern: `{% raw %}{% include figure.html img="my-cat.jpg" alt="cat" caption="My cat" width="50%" %}{% endraw %}`
@@ -57,7 +29,7 @@ Becomes:
 
 ----------
 
-### Alerts
+## Alerts
 
 Include code:
 
@@ -69,7 +41,7 @@ Becomes:
 
 -----------
 
-### Link Buttons 
+## Link Buttons 
 
 Include code:
 
@@ -81,7 +53,7 @@ Becomes:
 
 ---------
 
-### Cards
+## Cards
 
 Include code:
 
@@ -105,7 +77,7 @@ Becomes:
 
 ------------
 
-### Accordion
+## Accordion
 
 Include code:
 
@@ -117,7 +89,7 @@ Becomes:
 
 ------------
 
-### Modal
+## Modal
 
 Include code:
 
@@ -129,7 +101,7 @@ Becomes:
 
 -------------
 
-### YouTube embed
+## YouTube embed
 
 Include code:
 
@@ -141,7 +113,7 @@ Becomes:
 
 -------------
 
-### Jumbotron
+## Jumbotron
 
 Include code:
 
