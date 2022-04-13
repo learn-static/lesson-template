@@ -52,12 +52,33 @@ a { text-decoration: none; }
     grid-area: main;
     order: 1;
 }
+#breadcrumb-header {
+    display: block;
+    // make sticky
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    // remove mysterious gap at top??? 
+    margin-top: -2px;
+}
+
 /* set up sidebar display toggle for mobile */
 #sidebar-wrapper {
     display: none;
+    z-index: 98;
 }
 #sidebar-wrapper.sidebar-show {
     display: block;
+}
+#sidebar-wrapper {
+    // make sticky
+    position: -webkit-sticky;
+    position: sticky;
+    // place below breadcrumbs
+    top: 3rem;
+    height: calc(100vh - 3rem);
+    overflow-y: auto;
 }
 /* set up sticky sidebar for desktop */
 @media (min-width: 768px) {
@@ -66,13 +87,7 @@ a { text-decoration: none; }
     }
     #sidebar-wrapper {
         display: block;
-        position: -webkit-sticky;
-        position: sticky;
-        top: 2rem;
-        height: calc(100vh - 5rem);
-        overflow-y: auto;
     }
-
 }
 
 /* set up sidebar nav item styles */
@@ -124,7 +139,7 @@ a.nav-active {
 #skip-to-content a {
 	padding:6px;
 	position: absolute;
-	top:-200px;
+	top:-500px;
 	left:0px;
 	color:white;
 	border-right:1px solid white;
