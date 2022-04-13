@@ -1,12 +1,13 @@
 <!-- Bootstrap JS bundle -->
 <script src="{{ '/assets/lib/bootstrap.bundle.min.js' | relative_url }}"></script>
 <script>
-const sidebarToggle = document.body.querySelector('#sidebarToggle');
-const sidebarNav = document.body.querySelector('#sidebar-wrapper');
-sidebarToggle.addEventListener('click', event => {
-    event.preventDefault();
-    sidebarNav.classList.toggle('sidebar-show');
-});
+    /* mobile sidebar toggle */
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    const sidebarNav = document.body.querySelector('#sidebar-wrapper');
+    sidebarToggle.addEventListener('click', event => {
+        event.preventDefault();
+        sidebarNav.classList.toggle('sidebar-show');
+    });
 </script>
 <!-- load other js -->
 {% if page.foot %}{% include {{ page.foot }} %}{% endif %}
