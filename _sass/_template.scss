@@ -51,6 +51,7 @@ a { text-decoration: none; }
 #page-content-wrapper {
     grid-area: main;
     order: 1;
+    min-width:0;
 }
 #breadcrumb-header {
     display: block;
