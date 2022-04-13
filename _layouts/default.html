@@ -62,7 +62,7 @@
             Liquid logic figures out the nav items and nesting from the content front matter, 
             Plus figures out the previous and next page for the active page 
           {%- endcomment -%}
-          {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav_order and p.section == nil' | sort: 'nav_order' %}
+          {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav_order' | where_exp: 'p', 'p.section == nil' | sort: 'nav_order' %}
           {% for p in nav_pages %}
             {% assign current_i = forloop.index0 %}
             <li class="mb-2">
