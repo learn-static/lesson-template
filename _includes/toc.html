@@ -7,9 +7,24 @@
             <div class="card-body">
                 <h5 class="card-title">Contents:</h5>
                 <ul>
-                    {% for section in site.html_pages %}{% if section.nav %}
-                    <li><a href="{{ section.url | relative_url }}">{% if section.nav == true %}{{ section.title }}{% else %}{{ section.nav }}{% endif %}</a> {% if section.topics %}<small>| topics: {{ section.topics }}</small>{% endif %}</li>
-                    {% endif %}{%- endfor -%}
+                    {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav_order and p.section == nil' | sort: 'nav_order' %}
+                    {% for p in nav_pages %}
+                    <li>
+                        {% if p.section_id %}
+                        {{ p.section_id }}
+                        {% assign p_children = site.html_pages | where: 'section', p.section_id | sort: 'nav_order' %}
+                        <ul>
+                            <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> {% if p.topics %}<small>| topics: {{ p.topics }}</small>{% endif %}</li>
+                            {% for c in p_children %}
+                            <li><a href="{{ c.url | relative_url }}">{{ c.title }}</a> {% if c.topics %}<small>| topics: {{ c.topics }}</small>{% endif %}</li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <a href="{{ p.url | relative_url }}">{{ p.title }}</a> {% if p.topics %}<small>| topics: {{ p.topics }}</small>{% endif %}
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                    
                 </ul>
             </div>
         </div>
