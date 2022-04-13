@@ -1,8 +1,8 @@
-# workshop-template-s
+# lesson-template
 
 **project not finished!**
 
-Jekyll template for a simple workshop website with a sidebar using Bootstrap 5.
+Learn-Static Lesson Template is a minimal Jekyll theme with sidebar content nav for creating lesson and workshop websites using Markdown.
 
 ## Creating Content
 
