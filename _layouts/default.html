@@ -171,7 +171,7 @@
             {{ content }}
             </div>
             
-            <hr>
+            {% if prev_page_title or next_page_title %}<hr>{% endif %}
 
             <div class="my-5 d-flex justify-content-between">
               {% if prev_page_title %}<a class="btn btn-outline-dark" href="{{ prev_page_url | relative_url }}">{% include icon.html icon="chevron-left" %} {{ prev_page_title }}</a>{% endif %}
