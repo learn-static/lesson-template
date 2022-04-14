@@ -38,15 +38,17 @@ content_license_link: https://creativecommons.org/licenses/by-sa/4.0/
 ##########
 # THEME CUSTOMIZATION [optional!]
 #
-# leave these commented out or blank for defaults
+# leave these commented out or blank for defaults.
+# these options tweak CSS, so should be valid CSS values.
 #
 # header-background: 
 # header-text-color: 
 # breadcrumbs-background: 
 # breadcrumbs-text-color: 
 # active-nav-color: 
-# text-color: 
 # link-color:
+# next-button-color:
+# text-color: 
 # base-font-size:
 
 ##########

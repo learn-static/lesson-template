@@ -9,8 +9,9 @@
 {% if site.breadcrumbs-background %}$breadcrumbs-background: {{ site.breadcrumbs-background }};{% endif %}
 {% if site.breadcrumbs-text-color %}$breadcrumbs-text-color: {{ site.breadcrumbs-text-color }};{% endif %}
 $active-nav-color: {{ site.active-nav-color | default: '#d2f4ea' }};
-{% if site.text-color %}$text-color: {{ site.text-color }};{% endif %}
 {% if site.link-color %}$link-color: {{ site.link-color }};{% endif %}
+{% if site.next-button-color %}$next-button-color: {{ site.next-button-color }};{% endif %}
+{% if site.text-color %}$text-color: {{ site.text-color }};{% endif %}
 $base-font-size: {{ site.base-font-size | default: '1.1rem' }};
 
 // Import partials.

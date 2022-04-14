@@ -160,6 +160,13 @@ a.nav-active {
     margin-right: 5rem;
 }
 
+/* prev next button color */
+@if variable-exists(next-button-color) {
+    .btn-next {
+        border-color: $next-button-color;
+    }
+}
+
 /* skip nav for accessibility, based on https://webaim.org/techniques/skipnav/ */
 #skip-to-content a {
 	padding:6px;
