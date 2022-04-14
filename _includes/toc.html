@@ -5,7 +5,7 @@
     <div class="m-3 col-md-8" >
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Contents:</h5>
+                <h2 class="card-title h3">Contents</h2>
                 <ul>
                     {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav_order' | where_exp: 'p', 'p.section == nil' | sort: 'nav_order' %}
                     {% for p in nav_pages %}
