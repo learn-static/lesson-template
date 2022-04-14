@@ -14,24 +14,24 @@
 title: Learn-Static Lesson Template
 # title-icon appears in the header to give some pizazz (leave blank for none)
 # choose from Bootstrap Icons in _includes/bootstrap-icons
-# find names on https://icons.getbootstrap.com/
+# find names on https://icons.getbootstrap.com/ (or look in "_includes/bootstrap-icons")
 # some options: code-slash file-code gear tools lightblub book bookmark-star
 title-icon: code-slash
 # description appears in sidebar footer
 description: "Create a lesson website with markdown"
-# keywords for meta tags
+# keywords for meta tags used by search engines
 keywords: "workshops, websites, gh-pages, jekyll"
 # image for meta tags, will appear when sharing link on social media
 featured-image: "/images/uidaho-workshop.jpg"
 
-# author name
+# author name, displayed in credits
 author: evanwill
-# year or date published
-pub_year: 2022
+# year or date published, displayed in sidebar
+publication_year: 2022
 # location of code, the full url to your github repository
 source-code: https://github.com/learn-static/lesson-template
 # content license (typically "cc by-sa"), displayed in sidebar
-content_license: "cc by-sa"
+content_license: "CC BY-SA"
 # URL to the content license
 content_license_link: https://creativecommons.org/licenses/by-sa/4.0/
 
