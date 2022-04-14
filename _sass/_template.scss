@@ -15,10 +15,11 @@ body {
 }
 /* remove link underline */ 
 a { text-decoration: none; }
-/* custom header color */ 
-@if variable-exists(header-bg-color) {
+
+/* setup header */ 
+@if variable-exists(header-background) {
     header { 
-        background: $header-bg-color;
+        background: $header-background;
     }
 }
 #header-title {
@@ -30,6 +31,39 @@ a { text-decoration: none; }
     }
     text-decoration: none;
 }
+
+/* setup breadcrumb area */
+#breadcrumb-header {
+    display: block;
+    // make sticky
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    // remove mysterious gap at top??? 
+    margin-top: -2px;
+    // set breadcrumb divider type
+    nav {
+        --bs-breadcrumb-divider: '>';
+    }
+    // set custom background color
+    @if variable-exists(breadcrumbs-background) {
+        background: $breadcrumbs-background;
+    } @else {
+        background: rgb(33, 37, 41);
+    }
+    // set breadcrumb text color
+    .btn, .breadcrumb-item, .breadcrumb-item a, .breadcrumb-item::before {
+        @if variable-exists(breadcrumbs-text-color) {
+            color: $breadcrumbs-text-color;
+            border-color: $breadcrumbs-text-color;
+        } @else {
+            color: #fff;
+            border-color: #fff;
+        }
+    }
+}
+
 
 /* set up sidebar + content flex grid */ 
 @media (min-width: 992px) {
@@ -52,16 +86,6 @@ a { text-decoration: none; }
     grid-area: main;
     order: 1;
     min-width:0;
-}
-#breadcrumb-header {
-    display: block;
-    // make sticky
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 99;
-    // remove mysterious gap at top??? 
-    margin-top: -2px;
 }
 
 /* set up sidebar display toggle for mobile */

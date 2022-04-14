@@ -40,8 +40,10 @@ content_license_link: https://creativecommons.org/licenses/by-sa/4.0/
 #
 # leave these commented out or blank for defaults
 #
-# header-bg-color: 
+# header-background: 
 # header-text-color: 
+# breadcrumbs-background: 
+# breadcrumbs-text-color: 
 # active-nav-color: 
 # text-color: 
 # link-color:
