@@ -1,6 +1,6 @@
 ---
 title: Lesson Template
-layout: lesson-content
+layout: page
 ---
 
 A minimal Jekyll theme with sidebar content nav for creating lesson and workshop websites using Markdown.

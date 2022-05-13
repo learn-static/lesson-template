@@ -5,6 +5,11 @@
                 {% if site.title-icon %}<span class="me-2">{% include icon.html icon=site.title-icon %}</span>{% endif %}
                 {{ site.title }}
             </a>
+            <div class="d-flex flex-grow-1 align-items-center">
+                <a class="ms-lg-3 nav-link" href="{{ '/about.html' | relative_url }}">About</a>
+                <a class="nav-link" href="{{ '/content/' | relative_url }}">Documentation</a>
+                <a class="nav-link" href="{{ '/showcase.html' | relative_url }}">Showcase</a>
+            </div>
             <form class="ms-auto mb-3 mb-lg-0" role="search" id="search" onsubmit="site_search(); return false;">
                 <input id="site-search" class="form-control" type="search" placeholder="Search" aria-label="Search box">
             </form>
