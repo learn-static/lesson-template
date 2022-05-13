@@ -1,0 +1,170 @@
+---
+# pages with sidebar nav 
+layout: default
+---
+<div id="breadcrumb-header" class="py-2 border-bottom">
+    <div class="container-xxl d-flex align-items-center">
+
+      <button class="btn" id="sidebarToggle" title="Toggle sidebar navigation" aria-controls="sidebar-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+      </button>
+      
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb ms-3 mb-0">
+          <li class="breadcrumb-item">
+            <a href="{{ '/' | relative_url }}">Home</a>
+          </li>
+          {% if page.section or page.section_id %}
+          <li class="breadcrumb-item">{{ page.section | default: page.section_id }}</li>
+          {% endif %}
+          <li class="breadcrumb-item" aria-current="page">{{ page.title }}</li>
+        </ol>
+      </nav>
+
+    </div>
+</div>
+
+<div class="container-xxl" id="wrapper">
+    <!-- Sidebar-->
+    <div class="py-4 pe-3 bg-white" id="sidebar-wrapper">
+
+      <nav aria-label="Lesson content navigation">
+
+        <ul class="list-unstyled ps-0 pt-1">
+
+        {% comment %}
+          Liquid logic figures out the nav items and nesting from the content front matter, 
+          Plus figures out the previous and next page for the active page 
+        {%- endcomment -%}
+        {% assign nav_pages = site.html_pages | where_exp: 'p','p.nav_order' | where_exp: 'p', 'p.section == nil' | sort: 'nav_order' %}
+        {% for p in nav_pages %}
+          {% assign current_i = forloop.index0 %}
+          <li class="mb-2">
+            {% comment %} 
+              if the page is a section header, 
+              find the section children and display in a dropdown
+            {%- endcomment -%}
+            {% if p.section_id %}
+              {% assign p_children = site.html_pages | where: 'section', p.section_id | sort: 'nav_order' %}
+              {% comment %} figure out prev/next pages for active section header {% endcomment %}
+              {% if p.url == page.url %}
+                {% assign prev_number = forloop.index0 | minus: 1 %}
+                {% assign next_number = forloop.index0 | plus: 1 %}
+                {% if forloop.first %}
+                  {% if p_children[0] %}{% assign next_page_title = p_children[0].title %}{% assign next_page_url = p_children[0].url %}
+                  {% else %}
+                  {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
+                  {% endif %}
+                {% else %}
+                  {% assign prev_page = nav_pages[prev_number] %}
+                  {% if prev_page.section_id %}
+                    {% assign prev_child = site.html_pages | where: 'section', prev_page.section_id | sort: 'nav_order' | last %}
+                    {% assign prev_page_title = prev_child.title %}{% assign prev_page_url = prev_child.url %}
+                  {% else %}
+                    {% assign prev_page_title = prev_page.title %}{% assign prev_page_url = prev_page.url %}
+                  {% endif %}
+                  {% if p_children[0] %}{% assign next_page_title = p_children[0].title %}{% assign next_page_url = p_children[0].url %}
+                  {% else %}
+                  {% unless forloop.last %}{% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}{% endunless %}
+                  {% endif %}
+                {% endif %}
+              {%- endif -%}
+            <button class="side-bar-item btn-toggle rounded{% unless page.section == p.section_id or page.section_id == p.section_id %} collapsed{% endunless %}" data-bs-toggle="collapse" data-bs-target="#{{ p.section_id | slugify }}-collapse" aria-expanded="{% if page.section == p.section_id or page.section_id == p.section_id %}true{% else %}false{% endif %}">
+              {{ p.section_id }}
+            </button>
+            <div class="collapse{% if page.section == p.section_id or page.section_id == p.section_id %} show{% endif %}" id="{{ p.section_id | slugify }}-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li><a href="{{ p.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a></li>
+                {% for c in p_children %}
+                  {% comment %} figure out prev/next pages for active section child {% endcomment %}
+                  {% if c.url == page.url %}
+                    {% assign prev_number = forloop.index0 | minus: 1 %}
+                    {% assign next_number = forloop.index0 | plus: 1 %}
+                    {% if forloop.last %}
+                      {% if forloop.first %}
+                        {% assign prev_page_title = p.title %}{% assign prev_page_url = p.url %}
+                      {% else %}
+                        {% assign prev_page_title = p_children[prev_number].title %}{% assign prev_page_url = p_children[prev_number].url %}
+                      {% endif %}
+                      {% assign next_i = current_i | plus: 1 %}
+                      {% assign next_page_title = nav_pages[next_i].title %}{% assign next_page_url = nav_pages[next_i].url %}
+                    {% elsif forloop.first %}
+                      {% assign prev_page_title = p.title %}{% assign prev_page_url = p.url %}
+                      {% assign next_page_title = p_children[next_number].title %}{% assign next_page_url = p_children[next_number].url %}
+                    {% else %}
+                      {% assign prev_page_title = p_children[prev_number].title %}{% assign prev_page_url = p_children[prev_number].url %}
+                      {% assign next_page_title = p_children[next_number].title %}{% assign next_page_url = p_children[next_number].url %}
+                    {% endif %}
+                  {%- endif -%}
+                <li><a href="{{ c.url | relative_url }}" class="link-dark rounded{% if page.url == c.url %} nav-active{% endif %}">{{ c.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% else %}
+            {% comment %} 
+              Display individual listing (non-section pages)
+            {%- endcomment -%}
+              {% comment %} figure out prev/next pages for active individual listing {% endcomment %}
+              {% if p.url == page.url %}
+                {% assign prev_number = forloop.index0 | minus: 1 %}
+                {% assign next_number = forloop.index0 | plus: 1 %}
+                {% unless forloop.first %}
+                  {% assign prev_page = nav_pages[prev_number] %}
+                  {% if prev_page.section_id %}
+                    {% assign prev_child = site.html_pages | where: 'section', prev_page.section_id | sort: 'nav_order' | last %}
+                    {% assign prev_page_title = prev_child.title %}{% assign prev_page_url = prev_child.url %}
+                  {% else %}
+                    {% assign prev_page_title = prev_page.title %}{% assign prev_page_url = prev_page.url %}
+                  {% endif %}
+                {% endunless %}
+                {% unless forloop.last %}
+                  {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
+                {% endunless %}
+              {%- endif -%}
+            <a href="{{ p.url | relative_url }}" class="side-bar-item link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+          
+        </ul>
+
+      </nav>
+
+      <div id="sidebar-footer" class="mt-5 py-3 border-top">
+        {% include template/sidebar-footer.html %}
+      </div>
+
+    </div>
+
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+      
+        <!-- Page content-->
+        <main id="maincontent" role="main" aria-label="Content">
+          <div class="px-1 py-4">
+          {{ content }}
+          </div>
+          
+          {% if prev_page_title or next_page_title %}<hr>{% endif %}
+
+          <div class="my-5 d-flex justify-content-between">
+            {% if prev_page_title %}<a class="btn btn-outline-dark btn-next" href="{{ prev_page_url | relative_url }}">{% include icon.html icon="chevron-left" %} {{ prev_page_title }}</a>{% endif %}
+            {% if next_page_title %}<a class="btn btn-outline-dark btn-next" href="{{ next_page_url | relative_url }}">{{ next_page_title }} {% include icon.html icon="chevron-right" %}</a>{% endif %}
+          </div>
+
+        </main>
+
+    </div>
+</div>
+
+<script>
+    /* mobile sidebar toggle */
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    const sidebarNav = document.body.querySelector('#sidebar-wrapper');
+    sidebarToggle.addEventListener('click', event => {
+        event.preventDefault();
+        sidebarNav.classList.toggle('sidebar-show');
+    });
+</script>
