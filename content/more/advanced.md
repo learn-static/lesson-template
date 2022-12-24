@@ -17,8 +17,8 @@ The template's SASS is contained in "_sass/template.scss".
 These rules style the sidebar and content features.
 Rather than editing directly, it is better to override them using "_custom.scss".
 
-The "SASS partials" contained in the "_sass" folder are pulled into the final CSS file "assets/css/custom.scss".
-In general "custom.scss" does not need to be edited.
+The "SASS partials" contained in the "_sass" folder are pulled into the final CSS file "assets/css/main.scss".
+In general "main.scss" does not need to be edited.
 
 ## Tweak Includes 
 
