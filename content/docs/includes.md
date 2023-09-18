@@ -103,7 +103,7 @@ Becomes:
 
 -------------
 
-## YouTube embed
+## YouTube Embed
 
 Include code:
 
@@ -124,3 +124,15 @@ Include code:
 Becomes: 
 
 {% include jumbotron.html heading="Jumbotron Include" text="Paragraph content goes here." button-text="Learn more" button-color="outline-primary" button-link="https://github.com/evanwill/workshop-template-b" border=true %}
+
+-------------
+
+## Question
+
+Include code:
+
+`{% raw %}{% include question.html header=Example Question" text="Question text goes here?" solution="The answer is hidden until user clicks." %}{% endraw %}`
+
+Becomes:
+
+{% include question.html header="Example Question" text="Question text goes here?" solution="The answer is hidden until user clicks." %}
