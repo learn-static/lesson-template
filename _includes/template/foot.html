@@ -6,3 +6,5 @@
 {% if layout.gallery == true or page.gallery == true %}<script src="{{ '/assets/lib/lazysizes.min.js' | relative_url }}" async></script>
 <script src="{{ '/assets/lib/spotlight.min.js' | relative_url }}" defer></script>{% endif %}
 {% include template/scroll-to-top.html %}
+<script src="{{ '/assets/lib/lunr.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/site-search.js' | relative_url }}"></script>

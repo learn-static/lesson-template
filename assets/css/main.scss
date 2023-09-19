@@ -16,5 +16,5 @@ $base-font-size: {{ site.base-font-size | default: '1.1rem' }};
 
 // Import partials.
 @import
-  "template", "custom"
+  "template", "search", "custom"
 ;

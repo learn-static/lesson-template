@@ -5,15 +5,7 @@
                 {% if site.title-icon %}<span class="me-2">{% include icon.html icon=site.title-icon %}</span>{% endif %}
                 {{ site.title }}
             </a>
-            <form class="ms-auto mb-3 mb-lg-0" role="search" id="search" onsubmit="site_search(); return false;">
-                <input id="site-search" class="form-control" type="search" placeholder="Search" aria-label="Search box">
-            </form>
+            {% include template/overlay-nav-search.html %}
         </div>
     </nav>
 </header>
-<script>
-    function site_search() {
-    var query = document.getElementById("site-search").value;
-    window.open("{{ '/search/index.html' | relative_url }}?q=" + encodeURIComponent(query), "_self" );
-    }
-</script>
