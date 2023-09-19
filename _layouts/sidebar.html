@@ -19,7 +19,7 @@ layout: default
           {% if page.section or page.section_id %}
           <li class="breadcrumb-item">{{ page.section | default: page.section_id }}</li>
           {% endif %}
-          <li class="breadcrumb-item" aria-current="page">{{ page.title }}</li>
+          <li class="breadcrumb-item" aria-current="page">{{ page.nav | default: page.title }}</li>
         </ol>
       </nav>
 
@@ -76,7 +76,7 @@ layout: default
             </button>
             <div class="collapse{% if page.section == p.section_id or page.section_id == p.section_id %} show{% endif %}" id="{{ p.section_id | slugify }}-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="{{ p.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a></li>
+                <li><a href="{{ p.url | relative_url }}" class="link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.nav | default: p.title }}</a></li>
                 {% for c in p_children %}
                   {% comment %} figure out prev/next pages for active section child {% endcomment %}
                   {% if c.url == page.url %}
@@ -98,7 +98,7 @@ layout: default
                       {% assign next_page_title = p_children[next_number].title %}{% assign next_page_url = p_children[next_number].url %}
                     {% endif %}
                   {%- endif -%}
-                <li><a href="{{ c.url | relative_url }}" class="link-dark rounded{% if page.url == c.url %} nav-active{% endif %}">{{ c.title }}</a></li>
+                <li><a href="{{ c.url | relative_url }}" class="link-dark rounded{% if page.url == c.url %} nav-active{% endif %}">{{ c.nav | default: c.title }}</a></li>
                 {% endfor %}
               </ul>
             </div>
@@ -123,7 +123,7 @@ layout: default
                   {% assign next_page_title = nav_pages[next_number].title %}{% assign next_page_url = nav_pages[next_number].url %}
                 {% endunless %}
               {%- endif -%}
-            <a href="{{ p.url | relative_url }}" class="side-bar-item link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.title }}</a>
+            <a href="{{ p.url | relative_url }}" class="side-bar-item link-dark rounded{% if page.url == p.url %} nav-active{% endif %}">{{ p.nav | default: p.title }}</a>
             {% endif %}
           </li>
         {% endfor %}

@@ -18,11 +18,12 @@ This information is used to configure the page and navigation added to the site'
 
 Use these values:
 
-- `title:` value will appear as the H1 header at the top of the page, and in navigation links.
-- `topics:` will appear as a small feature below the title (optional). 
+- `title:` (required) value will appear as the H1 header at the top of the page and in navigation links. 
+- `nav:` use nav only if you would like a value different than the title to appear in the sidebar navigation (optional, this can be helpful if you want to use a shorter title in the nav).
+- `topics:` will appear as a small feature below the title (optional). These can serve as keywords to help your readers understand the focus of the section.
 - `description:` will appear as an indented text block below the title (optional). This gives you a chance to summarize the section contents. 
 - `youtubeid:` will add an YouTube video embed (optional). Find the id in the YouTube link. For example, in `https://youtu.be/moJgWrD6dwg` or `https://www.youtube.com/watch?v=moJgWrD6dwg` the youtubeid is `moJgWrD6dwg`.
-- Alternatively, if you don't want `title` or other options to appear on the page, you can over ride the section layout by adding `layout: default` 
+- Alternatively, if you don't want these features to appear on the page, you can over ride the layout by adding `layout:`  with the option `sidebar`, `page`, or `default`.
 
 The sidebar navigation is set up using further front matter values following these rules:
 
