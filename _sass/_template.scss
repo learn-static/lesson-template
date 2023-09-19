@@ -40,8 +40,6 @@ a { text-decoration: none; }
     position: sticky;
     top: 0;
     z-index: 99;
-    // remove mysterious gap at top??? 
-    margin-top: -2px;
     // set breadcrumb divider type
     nav {
         --bs-breadcrumb-divider: '>';
