@@ -1,7 +1,7 @@
 <p class="h5">{{ site.title }}</p> 
 <p>{{ site.description }}</p>
 <p>
-    <a href="{{ site.source-code }}" class="text-dark h4" title="Source Code">{% include icon.html icon="github" %}<span class="visually-hidden">Source Code</span></a> 
+    <a href="{{ site.source-code }}" class="text-dark h4" title="Source Code"><svg width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#source-code"></use></svg><span class="visually-hidden">Source Code</span></a> 
     <small> 
         {% if site.content_license_link %}<a href="{{ site.content_license_link }}">{{ site.content_license }}</a>
         {% elsif site.content_license %}{{ site.content_license }}{% endif %} 

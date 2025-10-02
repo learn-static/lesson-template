@@ -150,8 +150,8 @@ layout: default
           {% if prev_page_title or next_page_title %}<hr>{% endif %}
 
           <div class="my-5 d-flex justify-content-between">
-            {% if prev_page_title %}<a class="btn btn-outline-dark btn-next" href="{{ prev_page_url | relative_url }}">{% include icon.html icon="chevron-left" %} {{ prev_page_title }}</a>{% endif %}
-            {% if next_page_title %}<a class="btn btn-outline-dark btn-next" href="{{ next_page_url | relative_url }}">{{ next_page_title }} {% include icon.html icon="chevron-right" %}</a>{% endif %}
+            {% if prev_page_title %}<a class="btn btn-outline-dark btn-next" href="{{ prev_page_url | relative_url }}"><svg width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#previous-page"></use></svg> {{ prev_page_title }}</a>{% endif %}
+            {% if next_page_title %}<a class="btn btn-outline-dark btn-next" href="{{ next_page_url | relative_url }}">{{ next_page_title }} <svg width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#next-page"></use></svg></a>{% endif %}
           </div>
 
         </main>
