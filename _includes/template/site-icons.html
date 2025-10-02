@@ -1,0 +1,16 @@
+{% comment %}
+    This include processes the icons set in _config.yml to create an svg group for use on every page.
+    You can use the svg icons in the page like:
+
+    <svg width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#[the-key-from-config]"></use></svg>
+
+{% endcomment %}
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    {%- for i in site.icons -%}
+    {% capture icon %}bootstrap-icons/{{ i[1] }}.svg{%- endcapture -%}
+    {% capture markup %}{% include {{ icon }} %}{%- endcapture -%}
+    {% capture id-start %}<symbol id="{{ i[0] }}" {%- endcapture -%}
+    {{ markup | replace: '<svg xmlns="http://www.w3.org/2000/svg"', id-start | replace: '</svg>', '</symbol>' | normalize_whitespace }}
+    </symbol>
+    {%- endfor -%}
+</svg>

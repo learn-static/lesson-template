@@ -51,6 +51,16 @@ content_license_link: https://creativecommons.org/licenses/by-sa/4.0/
 # text-color: 
 # base-font-size:
 
+# site icons
+# don't change the keys, choose from icons in _includes/bootstrap-icons/, base filename without .svg
+icons: 
+  anchor-link-icon: link
+  next-page: chevron-right
+  previous-page: chevron-left
+  back-to-top: arrow-up-square
+  source-code: file-earmark-code-fill
+
+
 ##########
 # URL VARIABLES [optional!]
 #
