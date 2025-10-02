@@ -65,7 +65,10 @@ a { text-decoration: none; }
 h1, h2, h3, h4, h5, h6 {
   scroll-margin-top: 80px;
 }
-
+// anchor highlight style
+.anchor-highlight {
+    text-decoration: underline;
+}
 
 /* set up sidebar + content flex grid */ 
 @media (min-width: 992px) {
