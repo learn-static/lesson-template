@@ -12,7 +12,7 @@
 {%- endcomment -%}
 <div class="accordion mb-3" id="accordionInclude">
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
+      <h2 class="accordion-header no_anchor" id="headingOne">
         <button class="accordion-button{% unless include.open %} collapsed{% endunless %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="{% if include.open == true %}true{% else %}false{% endif %}" aria-controls="collapseOne">
             {{ include.title1 }}
         </button>
@@ -25,7 +25,7 @@
     </div>
     {% if include.title2 %}
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
+      <h2 class="accordion-header no_anchor" id="headingTwo">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             {{ include.title2 }}
         </button>
@@ -39,7 +39,7 @@
     {% endif %}
     {% if include.title3 %}
     <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
+      <h2 class="accordion-header no_anchor" id="headingThree">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             {{ include.title3 }}
         </button>

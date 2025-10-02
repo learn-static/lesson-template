@@ -18,7 +18,7 @@
 {% if include.img %}<img class="card-img-top" src="{{ '/images/' | append: include.img | relative_url }}" alt="{{ include.alt | default: 'Card image' }}">{% endif %}
 {% if include.header %}<div class="h4 card-header">{{ include.header }}</div>{% endif %}
 <div class="card-body">
-{% if include.title %}<h5 class="card-title">{{ include.title }}</h5>{% endif %}
+{% if include.title %}<h5 class="card-title no_anchor">{{ include.title }}</h5>{% endif %}
 <div class="card-text">
 {{ include.text | markdownify }}
 </div>

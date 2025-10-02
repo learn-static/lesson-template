@@ -60,6 +60,8 @@ icons:
   back-to-top: arrow-up-square
   source-code: file-earmark-code-fill
 
+# turn off anchor headings
+# anchor_headings: false
 
 ##########
 # URL VARIABLES [optional!]

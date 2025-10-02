@@ -12,7 +12,7 @@
 
 {%- endcomment -%}
 <div class="card my-4">
-    {% if include.header %}<div class="h4 card-header">{{ include.header }}</div>{% endif %}
+    {% if include.header %}<h2 class="h4 card-header no_anchor">{{ include.header }}</h2>{% endif %}
     <div class="card-body">
         <div class="card-text">
             {{ include.text | markdownify }}
