@@ -5,15 +5,30 @@
                 {% if site.title-icon %}<span class="me-2">{% include icon.html icon=site.title-icon %}</span>{% endif %}
                 {{ site.title }}
             </a>
-            <form class="ms-auto mb-3 mb-lg-0" role="search" id="search" onsubmit="site_search(); return false;">
-                <input id="site-search" class="form-control" type="search" placeholder="Search" aria-label="Search box">
-            </form>
+
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <svg width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#search-icon"></use></svg>
+                Search
+            </button>
         </div>
     </nav>
 </header>
-<script>
-    function site_search() {
-    var query = document.getElementById("site-search").value;
-    window.open("{{ '/search/index.html' | relative_url }}?q=" + encodeURIComponent(query), "_self" );
-    }
-</script>
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="searchModalLabel">Search content</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="search-input" placeholder="Type to search..." autocomplete="o
+                        ff" aria-label="Search content" autofocus>
+                    </div>
+                </form>
+                <div id="search-results"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -59,6 +59,8 @@ icons:
   previous-page: chevron-left
   back-to-top: arrow-up-square
   source-code: file-earmark-code-fill
+  search-icon: search
+  search-doc: file-earmark-check
 
 # turn off anchor headings
 # anchor_headings: false

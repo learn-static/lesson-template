@@ -28,4 +28,12 @@
         window.addEventListener("hashchange", highlightAnchor);
     });
 </script>
+<!-- search modal -->
+<script>
+    // Ensure input gets focus when modal opens
+    document.getElementById('searchModal').addEventListener('shown.bs.modal', function () {
+        document.getElementById('search-input').focus();
+    });
+</script>
+{% include template/search-js.html %}
 {% include template/scroll-to-top.html %}
