@@ -3,6 +3,7 @@ section: Create Content
 nav_order: 3
 title: Feature Includes
 topics: Content; Bootstrap Components
+gallery: true
 ---
 
 Lesson Template contains a series of [Liquid "includes"](https://jekyllrb.com/docs/includes/) to simplify adding basic [Bootstrap 5 components](https://getbootstrap.com/docs/5.1/components/) to your Markdown content.
@@ -26,6 +27,22 @@ Include code:
 Becomes:
 
 {% include figure.html img="uidaho-workshop.jpg" alt="workshop scene" caption="Library workshops!" width="75%" %}
+
+--------
+
+## Gallery Figures 
+
+- Same as Figure include, but adds a gallery viewer!
+- All gallery figures on the page will be browseable in the gallery.
+- Pages using this include **MUST** have `gallery: true` added to their front matter!
+
+Include code: 
+
+`{% raw %}{% include gallery-figure.html img="uidaho-workshop.jpg" alt="workshop scene" caption="Library workshops!" width="75%" %}{% endraw %}`
+
+Becomes:
+
+{% include gallery-figure.html img="uidaho-workshop.jpg" alt="workshop scene" caption="Library workshops!" width="75%" %}
 
 ----------
 
