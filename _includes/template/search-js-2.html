@@ -92,8 +92,39 @@
         results.forEach(result => {
             const doc = docs[result.id];
             let preview = doc.content;
-            let previewText = highlight(preview.slice(0, 200), query);
+            let previewText = "";
+
+            // Try to find a snippet containing the query terms
+            if (query && preview) {
+                // Split query into words
+                const terms = query.split(/\s+/).filter(Boolean);
+                // Find first occurrence of any term
+                let matchIndex = -1;
+                let matchTerm = "";
+                for (let term of terms) {
+                    const idx = preview.toLowerCase().indexOf(term.toLowerCase());
+                    if (idx !== -1 && (matchIndex === -1 || idx < matchIndex)) {
+                        matchIndex = idx;
+                        matchTerm = term;
+                    }
+                }
+                if (matchIndex !== -1) {
+                    // Get a snippet around the match
+                    let start = Math.max(0, matchIndex - 60);
+                    let end = Math.min(preview.length, matchIndex + 140);
+                    previewText = (start > 0 ? "... " : "") +
+                        highlight(preview.slice(start, end), query) +
+                        (end < preview.length ? " ..." : "");
+                } else {
+                    // Fallback: show first 200 chars
+                    previewText = highlight(preview.slice(0, 200), query);
+                    if (preview.length > 200) previewText += ' ...';
+                }
+            } else {
+                // No query, just show first 200 chars
+                previewText = preview.slice(0, 200);
             if (preview.length > 200) previewText += ' ...';
+            }
 
             const li = document.createElement('li');
             li.classList.add('search-results-list-item');
