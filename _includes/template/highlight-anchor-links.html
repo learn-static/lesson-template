@@ -13,7 +13,7 @@
             });
             // Get current hash
             const hash = decodeURIComponent(window.location.hash.slice(1));
-            if (!hash) return;
+            if (!hash || hash == "maincontent") return;
             // Find the heading inside #maincontent with matching id
             const heading = document.getElementById(hash);
             if (heading) {
