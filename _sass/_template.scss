@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 // anchor highlight style
 .anchor-highlight {
-    text-decoration: underline;
+    text-decoration: green wavy underline;
 }
 
 /* set up sidebar + content flex grid */ 
@@ -252,16 +252,13 @@ div.highlighter-rouge {
 }
 
 /* search */
+.search-result-highlight {
+    text-decoration: green wavy underline;
+}
 .search-results-title {
 }
 .search-result-icon {}
 .search-result-doc {
 }
 .search-result-doc-parent {
-}
-.search-result-icon {
-    width: 1rem;
-    height: 1rem;
-    margin-right: 0.5rem;
-    flex-shrink: 0;
 }
