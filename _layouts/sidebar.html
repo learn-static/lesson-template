@@ -30,7 +30,10 @@ layout: default
     <!-- Sidebar-->
     <div class="py-4 pe-3 bg-white" id="sidebar-wrapper">
 
-      {% include template/search-button.html %}
+      <button type="button" class="btn btn-outline-dark mb-3 w-100" data-bs-toggle="modal" data-bs-target="#searchModal">
+          <svg width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#search-icon"></use></svg>
+          Search
+      </button>
 
       <nav aria-label="Lesson content navigation">
 
