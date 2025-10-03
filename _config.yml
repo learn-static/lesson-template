@@ -51,8 +51,11 @@ content_license_link: https://creativecommons.org/licenses/by-sa/4.0/
 # text-color: 
 # base-font-size:
 
-# site icons
-# don't change the keys, choose from icons in _includes/bootstrap-icons/, base filename without .svg
+##########
+# SITE ICONS [optional! usually leave as is]
+#
+# don't change the keys! 
+# to customize, choose from icons in _includes/bootstrap-icons/, base filename without .svg
 icons: 
   anchor-link-icon: link
   next-page: chevron-right
@@ -60,10 +63,23 @@ icons:
   back-to-top: arrow-up-square
   source-code: file-earmark-code-fill
   search-icon: search
-  search-doc: file-earmark-check
 
-# turn off anchor headings
+
+##########
+# ANCHOR HEADINGS [optional!]
+#
+# uncomment and set to false to turn off anchor headings
 # anchor_headings: false
+#
+
+
+##########
+# SEARCH SETTINGS [optional!]
+#
+# set heading level for search segmentation
+search_heading_level: 3
+# page.search_exclude
+
 
 ##########
 # URL VARIABLES [optional!]
@@ -72,11 +88,11 @@ icons:
 #
 # use url for the domain, e.g. https://evanwill.github.io
 # on gh-pages follow the pattern: https://username.github.io
-# url:
+# url: 
 # use baseurl to add subsection of the domain, e.g. /workshop-template-b
 # on gh-pages this is a / followed by the name of the repository
 # baseurl is your github repository's name prefixed with a /
-# baseurl:
+# baseurl: 
 
 
 ##########
