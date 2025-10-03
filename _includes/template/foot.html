@@ -4,28 +4,7 @@
 {% if page.foot %}{% include {{ page.foot }} %}{% endif %}
 {% if layout.foot %}{% include {{ layout.foot }} %}{% endif %}
 {% if layout.gallery == true or page.gallery == true %}<script src="{{ '/assets/lib/lazysizes.min.js' | relative_url }}" async></script>
-<script src="{{ '/assets/lib/spotlight.min.js' | relative_url }}" defer></script>{% endif %}
-<!-- highlight anchor links -->
-<script>
-    // highlight selected anchor headings
-    document.addEventListener("DOMContentLoaded", function () {
-        function highlightAnchor() {
-            // Remove previous highlights
-            document.querySelectorAll(".anchor-highlight").forEach(el => {
-                el.classList.remove("anchor-highlight");
-            });
-            // Get current hash
-            const hash = decodeURIComponent(window.location.hash.slice(1));
-            if (!hash) return;
-            // Find the heading inside #maincontent with matching id
-            const heading = document.getElementById(hash);
-            if (heading) {
-                heading.classList.add("anchor-highlight");
-            }
-        }
-        // Highlight on page load and hash change
-        highlightAnchor();
-        window.addEventListener("hashchange", highlightAnchor);
-    });
-</script>
+<script src="{{ '/assets/lib/spotlight.bundle.js' | relative_url }}" defer></script>{% endif %}
+{% if site.anchor_headings != false %}{% include template/highlight-anchor-links.html %}{% endif %}
+{% include template/search-js.html %}
 {% include template/scroll-to-top.html %}

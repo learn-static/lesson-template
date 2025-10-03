@@ -1,0 +1,27 @@
+{% comment %}
+
+    This script adds anchor-highlight class to the heading matching the current hash on the page. 
+    
+{%- endcomment -%}
+<script>
+    // highlight selected anchor headings
+    document.addEventListener("DOMContentLoaded", function () {
+        function highlightAnchor() {
+            // Remove previous highlights
+            document.querySelectorAll(".anchor-highlight").forEach(el => {
+                el.classList.remove("anchor-highlight");
+            });
+            // Get current hash
+            const hash = decodeURIComponent(window.location.hash.slice(1));
+            if (!hash || hash == "maincontent") return;
+            // Find the heading inside #maincontent with matching id
+            const heading = document.getElementById(hash);
+            if (heading) {
+                heading.classList.add("anchor-highlight");
+            }
+        }
+        // Highlight on page load and hash change
+        highlightAnchor();
+        window.addEventListener("hashchange", highlightAnchor);
+    });
+</script>

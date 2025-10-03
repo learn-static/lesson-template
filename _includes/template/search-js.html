@@ -1,0 +1,186 @@
+{% comment %}
+
+    Docs search in a modal popup, powered by flexsearch, https://github.com/nextapps-de/flexsearch
+    This Include contains all the modal body and javascript.
+    Somewhere on the page you will need a search-button to trigger the modal similar to:
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#searchModal">
+            <svg width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#search-icon"></use></svg>
+            Search
+        </button>
+    The index data is in "assets/js/search-data.json".
+
+{%- endcomment -%}
+<!-- search modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="searchModalLabel">Search content</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="search-input" placeholder="Type to search..." autocomplete="o
+                        ff" aria-label="Search content">
+                    </div>
+                </form>
+                <div id="search-results"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ '/assets/lib/flexsearch.bundle.min.js' | relative_url }}"></script>
+<script>
+    
+    // set the input form and results div
+    const searchModal = document.getElementById('searchModal');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    // set up the search modal 
+    const searchModalModal = new bootstrap.Modal(searchModal, {});
+    // Ensure input gets focus when modal opens
+    searchModal.addEventListener('shown.bs.modal', event => {
+        document.getElementById('search-input').focus();
+    });
+    
+    // FlexSearch index and document store
+    let index = new FlexSearch.Document({
+        document: {
+            id: "id",
+            index: [
+                { field: "title", tokenize: "forward", store: true },
+                { field: "content", tokenize: "forward", store: true },
+                { field: "relUrl", store: true },
+                { field: "doc", store: true }
+            ]
+        },
+        tokenize: "forward",
+        cache: true
+    });
+    let docs = {};
+
+    // Load search data 
+    fetch('{{ "/assets/js/search-data.json" | relative_url }}')
+        .then(response => response.json())
+        .then(data => {
+            // Add documents to index and store
+            Object.keys(data).forEach(id => {
+                index.add({
+                    id: id,
+                    title: data[id].title,
+                    content: data[id].content,
+                    relUrl: data[id].relUrl,
+                    doc: data[id].doc
+                });
+                docs[id] = data[id];
+            });
+        });
+
+    // Helper to highlight matched terms in preview
+    function highlight(text, query) {
+        if (!query) return text;
+        // Escape regex special chars
+        const safeQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return text.replace(new RegExp(safeQuery, "gi"), match => `<span class="search-result-highlight">${match}</span>`);
+    }
+
+    // Render search results
+    function renderResults(results, query) {
+        searchResults.innerHTML = '';
+        if (!results.length) {
+            const noResultsDiv = document.createElement('div');
+            noResultsDiv.classList.add('search-no-result');
+            noResultsDiv.innerText = 'No results found';
+            searchResults.appendChild(noResultsDiv);
+            return;
+        }
+        const ul = document.createElement('ul');
+        ul.classList.add('search-results-list', 'list-unstyled');
+        searchResults.appendChild(ul);
+
+        results.forEach(result => {
+            const doc = docs[result.id];
+            let preview = doc.content;
+            let previewText = "";
+
+            // Try to find a snippet containing the query terms
+            if (query && preview) {
+                // Split query into words
+                const terms = query.split(/\s+/).filter(Boolean);
+                // Find first occurrence of any term
+                let matchIndex = -1;
+                let matchTerm = "";
+                for (let term of terms) {
+                    const idx = preview.toLowerCase().indexOf(term.toLowerCase());
+                    if (idx !== -1 && (matchIndex === -1 || idx < matchIndex)) {
+                        matchIndex = idx;
+                        matchTerm = term;
+                    }
+                }
+                if (matchIndex !== -1) {
+                    // Get a snippet around the match
+                    let start = Math.max(0, matchIndex - 60);
+                    let end = Math.min(preview.length, matchIndex + 140);
+                    previewText = (start > 0 ? "... " : "") +
+                        highlight(preview.slice(start, end), query) +
+                        (end < preview.length ? " ..." : "");
+                } else {
+                    // Fallback: show first 200 chars
+                    previewText = highlight(preview.slice(0, 200), query);
+                    if (preview.length > 200) previewText += ' ...';
+                }
+            } else {
+                // No query, just show first 200 chars
+                previewText = preview.slice(0, 200);
+            if (preview.length > 200) previewText += ' ...';
+            }
+
+            const li = document.createElement('li');
+            li.classList.add('search-results-list-item');
+            li.innerHTML = `
+                <a class="text-dark" href="${doc.url}">
+                    <div class="row border-bottom">
+                        <div class="col-md-5">
+                            <div class="search-result-title fs-4 fw-bold">${highlight(doc.title, query)}</div>
+                            <div class="search-result-doc ">${doc.doc}</div>
+                            <div class="search-result-rel-url"><small>${doc.relUrl}</small></div>
+                        </div>
+                        <div class="col-md-7 search-result-previews">
+                            <div class="search-result-preview"><small>${previewText}</small></div>
+                        </div>
+                    </div>
+                </a>
+            `;
+            ul.appendChild(li);
+        });
+        // hide the modal if click on a result, to ensure works on same page
+        searchResults.addEventListener('click', event => { searchModalModal.hide(); });
+
+    }
+
+    // Live search as typing
+    searchInput.addEventListener('input', function () {
+        const query = searchInput.value.trim();
+        if (!query) {
+            searchResults.innerHTML = '';
+            return;
+        }
+        // Search in title and content fields
+        let results = [];
+        if (index) {
+            // FlexSearch returns results grouped by field, flatten them
+            const titleResults = index.search(query, { field: "title", limit: 10 });
+            const contentResults = index.search(query, { field: "content", limit: 10 });
+            // Merge and deduplicate by id
+            const ids = new Set();
+            [...titleResults, ...contentResults].forEach(group => {
+                group.result.forEach(id => ids.add(id));
+            });
+            results = Array.from(ids).map(id => ({ id }));
+        }
+        renderResults(results, query);
+    });
+</script>

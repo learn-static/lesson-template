@@ -1,3 +1,10 @@
+/* smooth scroll for back to top, unless user opt out */
+html {
+    @media (prefers-reduced-motion: no-preference) {
+      scroll-behavior: smooth;
+    }
+}
+
 /* tweak defaults if variables set */
 body {
     @if variable-exists(base-font-size) { font-size: $base-font-size; }
@@ -62,12 +69,12 @@ a { text-decoration: none; }
     }
 }
 // add margin to headings so anchor links line up
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, #maincontent {
   scroll-margin-top: 80px;
 }
 // anchor highlight style
 .anchor-highlight {
-    text-decoration: underline;
+    text-decoration: green wavy underline;
 }
 
 /* set up sidebar + content flex grid */ 
@@ -249,4 +256,9 @@ div.highlighter-rouge {
     width: 1em;
     height: 1em;
     vertical-align: -0.1em;
+}
+
+/* search */
+.search-result-highlight {
+    text-decoration: green wavy underline;
 }
