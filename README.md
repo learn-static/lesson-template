@@ -95,9 +95,9 @@ The template makes use of a variety of open source libraries.
 These files are included in the 'assets/lib/" folder to ensure the project remains fully self contained.
 These assets include:
 
-- [Bootstrap](https://getbootstrap.com/) v5.3.2
-- [Bootstrap Icons](https://icons.getbootstrap.com/) v1.11.0
-- [lunr.js](https://lunrjs.com/) 
+- [Bootstrap](https://getbootstrap.com/)
+- [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [flexsearch](github.com/nextapps-de/flexsearch) 
 - [lazysizes](https://github.com/aFarkas/lazysizes)
 - [spotlight gallery](https://github.com/nextapps-de/spotlight)
 

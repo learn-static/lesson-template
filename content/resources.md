@@ -25,7 +25,7 @@ Markdown can be used any where on GitHub and in Jekyll.
 
 - [Mastering Markdown GitHub Guide](https://guides.github.com/features/mastering-markdown/){:target="_blank" rel="noopener"}
 - [GitHub Markdown documentation](https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax){:target="_blank" rel="noopener"}
-- [Markdown in a Minute](https://evanwill.github.io/_drafts/notes/markdown-minute.html)
+- [Write Markdown Everywhere!](https://evanwill.github.io/markdown-everywhere/)
 
 ## Bootstrap 5
 

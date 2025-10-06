@@ -19,7 +19,7 @@ layout: sidebar
 </div>
 {%- endif -%}
 
-{% if site.anchor_headings != false %}
+{% if site.anchor_headings != false and page.anchor_headings != false %}
 {% capture link-icon %}<svg width="16" height="16" fill="currentColor" class="bi" viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#anchor-link-icon"></use></svg>{% endcapture %}
 {% include template/anchor_headings.html html=content anchorBody=link-icon %}
 {% else %}

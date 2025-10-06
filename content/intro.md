@@ -12,7 +12,7 @@ All content is written using basic Markdown, making it simple to write, edit, an
 
 To use Lesson Template to create your own website--> make a copy and replace the template content with your own!
 
-### Why?
+## Why?
 
 Rather than making slides for a workshop, why not make a website? 
 It's easier to write, access, share, and reuse. 
