@@ -12,15 +12,14 @@
     - "alt" = alt text for image
     - "width" = will use responsive sizing to set the % size on desktop (will be 100% on mobile), choose from "25", "50", "75", or "100"
     - "centered" = give "true" to add mx-auto class on the card to center it
+    - "heading_level" = customize the level of the heading if necessary for accessibility, choose "h1", "h2", "h3", etc (optional, default "h2")
 
 {%- endcomment -%}
 <div class="card mb-3{% if include.width %} feature-w-{{ include.width }}{% endif %}{% if include.centered %} mx-auto{% endif %}">
-{% if include.img %}<img class="card-img-top" src="{{ '/images/' | append: include.img | relative_url }}" alt="{{ include.alt | default: 'Card image' }}">{% endif %}
-{% if include.header %}<div class="h4 card-header">{{ include.header }}</div>{% endif %}
-<div class="card-body">
-{% if include.title %}<h5 class="card-title no_anchor">{{ include.title }}</h5>{% endif %}
-<div class="card-text">
-{{ include.text | markdownify }}
-</div>
-</div>
+    {% if include.img %}<img class="card-img-top" src="{% if include.img contains '/' %}{{ include.img | relative_url }}{% else %}{{ '/images/' | relative_url }}{{ include.img }}{% endif %}" alt="{{ include.alt | default: 'Card image' }}">{% endif %}
+    {% if include.header %}<{{ include.heading_level | default: 'h2' | strip }} class="card-header no_anchor">{{ include.header }}</{{ include.heading_level | default: 'h2' | strip }}>{%- endif -%}
+    <div class="card-body">
+        {% if include.title %}<{{ include.heading_level | default: 'h2' | strip }} class="card-title no_anchor">{{ include.title }}</{{ include.heading_level | default: 'h2' | strip }}>{%- endif -%}
+        <div class="card-text">{{ include.text | markdownify }}</div>
+    </div>
 </div>

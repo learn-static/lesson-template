@@ -10,7 +10,6 @@
     - "align" = text alignment (center, end, start)
 
 {%- endcomment -%}
-
 <div class="alert feature-alert alert-{{ include.color | default: 'primary' }} {% if include.align %}text-{{ include.align }}{% endif %}" role="alert">
 {{ include.text | markdownify }}
 </div>

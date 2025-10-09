@@ -8,17 +8,53 @@
     e.g. in https://youtu.be/SWVjQsvQocA the id is = SWVjQsvQocA
 
     Options:
-    - "youtubeid" = a youtube id 
+    - "video" = one of the options:
+        - a full URL to a video hosted on YouTube, e.g. https://youtu.be/dbKNr3wuiuQ
+        - a full URL to a video hosted on Vimeo, e.g. https://vimeo.com/464555587 
+        - a full URL to an external video file (supported by browsers, generally mp4), e.g. "https://www.lib.uidaho.edu/digital/videos/fluffyclouds.mp4"
+        - a relative link to a video file stored in this repository, i.e. "/assets/videos/cloudyskies.mp4"  
+    - "youtubeid" = a youtube id (legacy alternative to using "video" option)
     - "width" will use Bootstrap sizing to set the % size, choose from "25", "50", "75", or "100"
-    - "caption" by default the figure include automatically adds the title of the item from your metadata. The caption option allows you to manually add a different caption, or give the value false for none.
+    - "caption" = the caption option allows you to add a caption below the video
     - "ratio" use Bootstrap embed ratio options "21x9", "16x9", "4x3", or "1x1" to customize the responsive aspect ratio. 16x9 is default.
+    - "transcript" = add a transcript text below the video
 
 {%- endcomment -%}
+{%- if include.youtubeid -%}{% capture raw_src %}https://www.youtube-nocookie.com/embed/{{ include.youtubeid }}?rel=0&modestbranding=1{% endcapture %}{% else %}{% capture raw_src %}{{ include.video }}{% endcapture %}{%- endif -%}
+{%- if raw_src contains 'vimeo' -%}
+    {% assign vimeo_id = raw_src | split: '/' | last %}
+    {% capture video_src %}https://player.vimeo.com/video/{{ vimeo_id }}{% endcapture %}
+{%- elsif raw_src contains 'youtu' -%}
+    {% assign youtube_id = raw_src | split: '/' | last %}
+    {% if youtube_id contains 'v=' %}{% assign youtube_id = youtube_id | split: 'v=' | last | split: '&' | first %}
+    {% elsif youtube_id contains '?' %}{% assign youtube_id = youtube_id | split: '?' | first %}{% endif %}
+    {% capture video_src %}https://www.youtube-nocookie.com/embed/{{ youtube_id }}?rel=0&modestbranding=1{% endcapture %}
+{%- else -%}
+    {% assign video_src = raw_src | relative_url %}
+{%- endif -%}
+{% capture includeid %}{% if include.video.size > 8 %}{{ include.video | slice: -8, 8 | slugify }}{% else %}{{ include.video | default: include.youtubeid | slugify }}{% endif %}{% endcapture %}
 <div class="text-center ">
     <figure class="figure w-{{ include.width | default: '100' }}">
         <div class="ratio ratio-{{ include.ratio | default: '16x9' }}">
-            <iframe src="https://www.youtube-nocookie.com/embed/{{ include.youtubeid }}?rel=0&modestbranding=1" allowfullscreen></iframe>
+            {%- if video_src contains "vimeo" or video_src contains "youtu" -%}
+            <iframe title="video embed {{ video_caption | escape }}" src="{{ video_src }}" allowfullscreen></iframe>
+            {% else %}
+            <video {% if video_poster %}poster="{{ video_poster | relative_url }}"{% endif %} preload="metadata" controls>
+                <source src="{{ video_src }}">
+                Your browser does not support the video tag.
+            </video>
+            {%- endif -%}
         </div>
-        {% if include.caption %}<figcaption class="figure-caption">{{ include.caption }}</figcaption>{% endif %}
+        {% if include.caption or include.transcript %}<figcaption class="figure-caption text-center">
+            {% if include.caption %}{{ include.caption }}{% endif %}
+            {% if include.transcript %}<br>
+            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTranscript{{ includeid }}" aria-expanded="false" aria-controls="collapseTranscript{{ includeid }}">View Transcript</button>
+            <div class="collapse mt-3" id="collapseTranscript{{ includeid }}">
+                <div class="card card-body text-start">
+                    {{ include.transcript | markdownify }}
+                </div>
+            </div>
+            {% endif %}
+        </figcaption>{% endif %}
     </figure>
 </div>

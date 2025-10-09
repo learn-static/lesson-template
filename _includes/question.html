@@ -7,21 +7,26 @@
     
     Options:
     - "header" = card header text (in bar above card content)
+    - "title" = card title text inside card content area
     - "text" = main card text, can use markdown formatting. Use a Liquid capture to add more complex content.
     - "solution" = displayed in the collapse
+    - "button" = text of the button that triggers the collapse to open (defaults to "View Solution")
+    - "heading_level" = customize the level of the heading if necessary for accessibility, choose "h1", "h2", "h3", etc (optional, default "h2")
 
 {%- endcomment -%}
+{% capture includeid %}{{ include.header | default: include.title | default: 'solution' | slugify }}{% endcapture %}
 <div class="card my-4">
-    {% if include.header %}<h2 class="h4 card-header no_anchor">{{ include.header }}</h2>{% endif %}
+    {% if include.header %}<{{ include.heading_level | default: 'h2' | strip }} class="card-header no_anchor">{{ include.header }}</{{ include.heading_level | default: 'h2' | strip }}>{%- endif -%}
     <div class="card-body">
+        {% if include.title %}<{{ include.heading_level | default: 'h2' | strip }} class="card-title no_anchor">{{ include.title }}</{{ include.heading_level | default: 'h2' | strip }}>{%- endif -%}
         <div class="card-text">
             {{ include.text | markdownify }}
         </div>
         {% if include.solution %}
-        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ include.header | default: 'Solution' | slugify }}" aria-expanded="false" aria-controls="collapseExample">
-            View Solution {% include icon.html icon="chevron-down" %}
+        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ includeid }}" aria-expanded="false" aria-controls="collapseExample">
+            {{ include.button | default: 'View Solution' }} {% include icon.html icon="chevron-down" %}
         </button>
-        <div class="collapse" id="collapse{{ include.header | default: 'Solution' | slugify }}">
+        <div class="collapse" id="collapse{{ includeid }}">
           <div class="card card-body">
             {{ include.solution | markdownify }}
           </div>

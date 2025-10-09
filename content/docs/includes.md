@@ -124,11 +124,11 @@ Becomes:
 
 Include code:
 
-`{% raw %}{% include video-embed.html youtubeid="moJgWrD6dwg" caption="Example video" %}{% endraw %}`
+`{% raw %}{% include video-embed.html video="https://youtu.be/moJgWrD6dwg" caption="Example caption" transcript="GitHub something..." %}{% endraw %}`
 
 Becomes:
 
-{% include video-embed.html youtubeid="moJgWrD6dwg" caption="Example video" %}
+{% include video-embed.html video="https://youtu.be/moJgWrD6dwg" caption="Example caption" transcript="GitHub something..." %}
 
 -------------
 
