@@ -23,8 +23,8 @@ To learn more check out Hello World on [GitHub Guides](https://guides.github.com
 [Markdown](https://daringfireball.net/projects/markdown/) is a standard to simplify writing content for the web. 
 Markdown can be used any where on GitHub and in Jekyll.
 
-- [Mastering Markdown GitHub Guide](https://guides.github.com/features/mastering-markdown/){:target="_blank" rel="noopener"}
-- [GitHub Markdown documentation](https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax){:target="_blank" rel="noopener"}
+- [Mastering Markdown GitHub Guide](https://guides.github.com/features/mastering-markdown/)
+- [GitHub Markdown documentation](https://docs.github.com/en/free-pro-team@latest/github/writing-on-github/basic-writing-and-formatting-syntax)
 - [Write Markdown Everywhere!](https://evanwill.github.io/markdown-everywhere/)
 
 ## Bootstrap 5
